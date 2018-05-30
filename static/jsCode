@@ -1,5 +1,5 @@
 function tagRender(template, data) {
-    var allData = data
+    var allData = data;
     var imgReg = new RegExp('#{img}', 'ig');
     //分页标签
     var pageReg = new RegExp('#{pagination}', 'ig');

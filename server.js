@@ -69,7 +69,7 @@ function getStaticContent(mainContent,fileName){
           
             var files = item.split('.');
             var suffix = files[files.length -1];
-            if(suffix !='js' && suffix !='json'){
+            if(suffix !='js' && suffix !='json' && item !=='jsCode'){
                 result = minify(result,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
             }
             mainContent= mainContent.replace(templateReg,result)
