@@ -1,0 +1,12 @@
+function tagRender(template, data) {
+    var allData = data
+    var imgReg = new RegExp('#{img}', 'ig');
+    //分页标签
+    var pageReg = new RegExp('#{pagination}', 'ig');
+    //二维码
+    var imgLabelling = allData.cachetUrl ? '<img style="position:absolute;display:inline-block;width:160px;height:160px;left:-80px;top:-80px" src = "' + allData.cachetUrl + '">' : '';
+    template = template.replace(imgReg, '<span class="print-other-chapter" style="position: relative;">' + imgLabelling + '</span>');
+    template = template.replace(pageReg, '<div class = "print-pagination-avoid"></div>');
+    
+    return template;
+}
