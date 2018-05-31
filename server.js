@@ -14,7 +14,7 @@ var staticPath = path.resolve(__dirname+'/static');
 
 const templateFile = chokidar.watch(path.join(__dirname, '/template'));
 const mainFile = chokidar.watch(path.join(__dirname, '/main'));
-const staticFile = chokidar.watch(path.join(__dirname, '/main'));
+const staticFile = chokidar.watch(path.join(__dirname, '/static'));
  
 
 templateFile.on('ready', () => {
@@ -69,7 +69,7 @@ function getStaticContent(mainContent,fileName){
           
             var files = item.split('.');
             var suffix = files[files.length -1];
-            if(suffix !='js' && suffix !='json' && item !=='jsCode'){
+            if(suffix !='js' && suffix !='json' && item !=='jsCode' && item !=='allData'){
                 result = minify(result,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
             }
             mainContent= mainContent.replace(templateReg,result)
