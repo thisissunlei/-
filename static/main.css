@@ -160,7 +160,7 @@ body {
 .hander-detail {
     position: absolute;
     top: 0px;
-    right: 0px;
+    right: -82px;
 
 }
 
@@ -170,6 +170,15 @@ body {
     color: #333333;
     margin-top: 5px;
 }
+
+.agreement .english{
+    position: relative;
+    top:22px;
+    left:-48px;
+
+}
+
+
 
 .detail {
     border: 1px solid #333;
@@ -264,4 +273,8 @@ table.detail-table .detail-content-tr td:last-child {
 }
 table.detail-table .detail-content-tr td:first-child{
     border-radius: 0px 0px 0px 8px;
+}
+
+.period{
+    width: 135px;
 }

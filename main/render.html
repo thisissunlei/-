@@ -36,10 +36,14 @@
         detailReander("wf_station_contract_period", utils.allData);
         detailReander("wf_station_contract_finished", utils.allData);
         rentDetailsRender(utils.allData);
+        
+
+
         var qrCodeDoms = getNode(".qrCode");
         for (var i = 0; i < qrCodeDoms.length; i++) {
             qrCodeDoms[i].src = utils.allData.qrImgUrl;
         }
+       
         (function ($) {
             $.fn.extend({
                 //表格合并单元格，colIdx要合并的列序号，从0开始
@@ -72,6 +76,43 @@
             $("#wf_station_contract_period").rowspan(0);
         });
         printBox.innerHTML = spliceKey(printBox.innerHTML, utils.allData);
+        dateFormat();
+        
+        function dateFormat(){
+            var dateDom  = $(".date-format");
+            // console.log( dateDom);
+            for(var i=0; i<dateDom.length;i++){
+                // var chineseDom =  $(dateDom[i]).children('.chinese');
+                // for(var i=0;i<chineseDom.length;i++){
+                //     console.log( $(chineseDom[i]).html());
+                    
+                // }
+                var englishDom =  $(dateDom[i]).children('.english');
+                var chineseDom =  $(dateDom[i]).children('.chinese');
+                console.log(englishDom)
+                var eStr = ''; 
+                var cStr = ''
+                for(var j=0;j<englishDom.length;j++){
+                    console.log( $(englishDom[j]).html());
+                    if(j === 0){
+                       eStr +=  $(englishDom[j]).html() + "~" ;
+                       cStr += $(chineseDom[j]).html()+ "~";
+                    }else{
+                        eStr +=  $(englishDom[j]).html();
+                        cStr += $(chineseDom[j]).html();
+                    }
+                    // eStr += $(englishDom[j]).html();
+                    // cStr += $(chineseDom[j]).html();
+                }
+                console.log(eStr,"---",cStr)
+                // return $(".date-format").append = (englishDom[i].html())
+                dateDom[i].innerHTML = '<div>'+cStr+'</div><div>'+eStr+'</div>';
+            
+            }
+             
+           
+        };
+
 
         function rentDetailsRender(allData) {
             var rentDetailsDom = document.getElementById('wf_station_contract_station');

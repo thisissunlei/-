@@ -167,7 +167,7 @@ body {
 .hander-detail {
     position: absolute;
     top: 0px;
-    right: 0px;
+    right: -82px;
 
 }
 
@@ -177,6 +177,15 @@ body {
     color: #333333;
     margin-top: 5px;
 }
+
+.agreement .english{
+    position: relative;
+    top:22px;
+    left:-48px;
+
+}
+
+
 
 .detail {
     border: 1px solid #333;
@@ -273,6 +282,9 @@ table.detail-table .detail-content-tr td:first-child{
     border-radius: 0px 0px 0px 8px;
 }
 
+.period{
+    width: 135px;
+}
 </style>
 <body>
 <div id="print-box">
@@ -3035,10 +3047,14 @@ table.detail-table .detail-content-tr td:first-child{
         detailReander("wf_station_contract_period", utils.allData);
         detailReander("wf_station_contract_finished", utils.allData);
         rentDetailsRender(utils.allData);
+        
+
+
         var qrCodeDoms = getNode(".qrCode");
         for (var i = 0; i < qrCodeDoms.length; i++) {
             qrCodeDoms[i].src = utils.allData.qrImgUrl;
         }
+       
         (function ($) {
             $.fn.extend({
                 //表格合并单元格，colIdx要合并的列序号，从0开始
@@ -3071,6 +3087,43 @@ table.detail-table .detail-content-tr td:first-child{
             $("#wf_station_contract_period").rowspan(0);
         });
         printBox.innerHTML = spliceKey(printBox.innerHTML, utils.allData);
+        dateFormat();
+        
+        function dateFormat(){
+            var dateDom  = $(".date-format");
+            // console.log( dateDom);
+            for(var i=0; i<dateDom.length;i++){
+                // var chineseDom =  $(dateDom[i]).children('.chinese');
+                // for(var i=0;i<chineseDom.length;i++){
+                //     console.log( $(chineseDom[i]).html());
+                    
+                // }
+                var englishDom =  $(dateDom[i]).children('.english');
+                var chineseDom =  $(dateDom[i]).children('.chinese');
+                console.log(englishDom)
+                var eStr = ''; 
+                var cStr = ''
+                for(var j=0;j<englishDom.length;j++){
+                    console.log( $(englishDom[j]).html());
+                    if(j === 0){
+                       eStr +=  $(englishDom[j]).html() + "~" ;
+                       cStr += $(chineseDom[j]).html()+ "~";
+                    }else{
+                        eStr +=  $(englishDom[j]).html();
+                        cStr += $(chineseDom[j]).html();
+                    }
+                    // eStr += $(englishDom[j]).html();
+                    // cStr += $(chineseDom[j]).html();
+                }
+                console.log(eStr,"---",cStr)
+                // return $(".date-format").append = (englishDom[i].html())
+                dateDom[i].innerHTML = '<div>'+cStr+'</div><div>'+eStr+'</div>';
+            
+            }
+             
+           
+        };
+
 
         function rentDetailsRender(allData) {
             var rentDetailsDom = document.getElementById('wf_station_contract_station');
@@ -3123,9 +3176,9 @@ table.detail-table .detail-content-tr td:first-child{
             var data = allData.items;
 
             var housHander = '<tr class="bg-big"><td style="text-align:center;width:145px">服务期<div>Service Period</div></td><td style="width:150px">服务费计算说明<div>Service Fee Calculation description</div></td><td style="text-align:center;width:170px">单价<div>Price</div></td><td style="text-align:center">数量<div>Number Subtotal</div></td><td style="text-align:center">小计<div>Subtotal</div></td></tr>';
-            var housContent = '<tr><td style="width:145px">{{start_date}}至<p>{{end_date}}</p></td><td style="width:150px">{{calculat_descr}}</td><td style="text-align:right;width:170px">{{unit_price}}</td><td>{{count}}</td><td style="text-align:right">{{amount}}</td></tr>';
+            var housContent = '<tr><td class="date-format" style="width:145px">{{start_date}}至<p>{{end_date}}</p></td><td style="width:150px">{{calculat_descr}}</td><td style="text-align:right;width:170px">{{unit_price}}</td><td>{{count}}</td><td style="text-align:right">{{amount}}</td></tr>';
             var stationHander = '<tr class="bg-big"><td style="text-align:center;width:145px">服务期<div>Service Period</div></td><td style="width:150px">服务费计算说明<div>Service Fee Calculation description</div></td><td style="text-align:center;width:170px">单价<div>Price</div></td><td style="text-align:center">数量<div>Number Subtotal</div></td><td style="text-align:center">小计<div>Subtotal</div></td></tr>';
-            var stationContent = '<tr><td style="width:145px">{{start_date}}至<p>{{end_date}}</p></td><td style="width:150px">{{calculat_descr}}</td><td style="text-align:right;width:170px">{{unit_price}}</td><td>{{count}}</td><td style="text-align:right">{{amount}}</td></tr>';
+            var stationContent = '<tr><td class="date-format" style="width:145px">{{start_date}}至<p>{{end_date}}</p></td><td style="width:150px">{{calculat_descr}}</td><td style="text-align:right;width:170px">{{unit_price}}</td><td>{{count}}</td><td style="text-align:right">{{amount}}</td></tr>';
             var footer = '<div class="total"><div style="text-align:left;width:70%"><div style="word-break:break-all;width:100%">{{code_or_name}}</div></div><div style="text-align:right;width:30%">合计:￥{{total_amount}}<div style="width:100%">Total:<span style="color:transparent">￥{{total_amount}}</span></div></div></div>';
             var tableHtml = spliceKey(footer,allData)+' <table cellspacing="0" >'+housHander;
             if(type == 'station'){
