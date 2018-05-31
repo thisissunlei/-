@@ -204,11 +204,7 @@
                     if ((f = o[3]) && c.getElementsByClassName && b.getElementsByClassName) return H.apply(d, b.getElementsByClassName(f)), d
                 }
                 if (c.qsa && !A[a + " "] && (!q || !q.test(a))) {
-                    if (1 !== x) w = b, s = a; else if ("object" !== b.nodeName.toLowerCase()) {
-                        (k = b.getAttribute("id")) ? k = k.replace(aa, "\\${jq.js}") : b.setAttribute("id", k = u), r = g(a), h = r.length, l = V.test(k) ? "#" + k : "[id='" + k + "']";
-                        while (h--) r[h] = l + " " + qa(r[h]);
-                        s = r.join(","), w = _.test(a) && oa(b.parentNode) || b
-                    }
+                    
                     if (s) try {
                         return H.apply(d, w.querySelectorAll(s)), d
                     } catch (y) {
