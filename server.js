@@ -3,15 +3,16 @@ var express = require('express');
 var app = express(); 
 var fs = require('fs')  
 var path=require('path');  
+var setTemplate = require('./tool/setTemplate')
 
 var chokidar = require('chokidar');
 var minify = require('html-minifier').minify;
 
-var templatePath = path.resolve(__dirname+'/template');  
+var templatePath = path.resolve(__dirname+'/template/page');  
 var mainPath = path.resolve(__dirname+'/main'); 
 var pubilcPath = path.resolve(__dirname+'/public'); 
 var staticPath = path.resolve(__dirname+'/static');
-
+console.log(setTemplate,"ooooooooo")
 const templateFile = chokidar.watch(path.join(__dirname, '/template'));
 const mainFile = chokidar.watch(path.join(__dirname, '/main'));
 const staticFile = chokidar.watch(path.join(__dirname, '/static'));
@@ -77,6 +78,7 @@ function getStaticContent(mainContent,fileName){
 }
 //获取主文件的内容
 function getMainHtml(){
+    setTemplate();
     fs.readdir(mainPath, 'utf8', function (err,data) {  
        
         data.forEach(function(item, index) {  
@@ -94,9 +96,14 @@ function getMainHtml(){
       
     });  
 }
+//生成模板html
+function setTemplate(){
+
+}
 //获取生成查看文件
 function render(templateContent,fileName){
     var templateReg = new RegExp('\\$\\{template\\}', 'ig');
+
     fs.readdir(templatePath, 'utf8', function (err,data) {  
       
        
