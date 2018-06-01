@@ -19,7 +19,7 @@ const staticFile = chokidar.watch(path.join(__dirname, '/static'));
 
 templateFile.on('ready', () => {
     templateFile.on('change', (path) => {
-        getStaticContent();
+        getMainHtml();
     });
     // watcher.on('add', (path) => {
     //     console.log('<---- watched new file add, do something ---->');
