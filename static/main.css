@@ -170,7 +170,7 @@ body {
 
 .hander-detail {
     position: absolute;
-    top: 0px;
+    top: -11px;
     right: -94px;
 
 }
@@ -184,7 +184,7 @@ body {
 
 .agreement .english{
     position: relative;
-    top:22px;
+    top:25px;
     left:-48px;
 
 }
