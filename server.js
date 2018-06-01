@@ -3,22 +3,24 @@ var express = require('express');
 var app = express(); 
 var fs = require('fs')  
 var path=require('path');  
+var setTemplate = require('./tool/setTemplate')
 
 var chokidar = require('chokidar');
 var minify = require('html-minifier').minify;
 
-var templatePath = path.resolve(__dirname+'/template');  
+var templatePath = path.resolve(__dirname+'/template/page');  
 var mainPath = path.resolve(__dirname+'/main'); 
 var pubilcPath = path.resolve(__dirname+'/public'); 
 var staticPath = path.resolve(__dirname+'/static');
 
-const templateFile = chokidar.watch(path.join(__dirname, '/template'));
+const templateComponents = chokidar.watch(path.join(__dirname, '/template/components'));
+const templatePage = chokidar.watch(path.join(__dirname, '/template/templatePage'));
 const mainFile = chokidar.watch(path.join(__dirname, '/main'));
 const staticFile = chokidar.watch(path.join(__dirname, '/static'));
  
 
-templateFile.on('ready', () => {
-    templateFile.on('change', (path) => {
+templateComponents.on('ready', () => {
+    templateComponents.on('change', (path) => {
         getMainHtml();
     });
     // watcher.on('add', (path) => {
@@ -28,6 +30,20 @@ templateFile.on('ready', () => {
     //     console.log('<---- watched file remove, do something ---->');
     // });
 })
+
+templatePage.on('ready', () => {
+    templatePage.on('change', (path) => {
+        getMainHtml();
+    });
+    // watcher.on('add', (path) => {
+    //     console.log('<---- watched new file add, do something ---->');
+    // });
+    // watcher.on('unlink', (path) => {
+    //     console.log('<---- watched file remove, do something ---->');
+    // });
+})
+
+
 mainFile.on('ready', () => {
     mainFile.on('change', (path) => {
         getMainHtml();
@@ -77,6 +93,7 @@ function getStaticContent(mainContent,fileName){
 }
 //获取主文件的内容
 function getMainHtml(){
+    setTemplate();
     fs.readdir(mainPath, 'utf8', function (err,data) {  
        
         data.forEach(function(item, index) {  
@@ -94,9 +111,14 @@ function getMainHtml(){
       
     });  
 }
+//生成模板html
+function setTemplate(){
+
+}
 //获取生成查看文件
 function render(templateContent,fileName){
     var templateReg = new RegExp('\\$\\{template\\}', 'ig');
+
     fs.readdir(templatePath, 'utf8', function (err,data) {  
       
        

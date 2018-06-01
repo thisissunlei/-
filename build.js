@@ -7,14 +7,10 @@ var path=require('path');
 var chokidar = require('chokidar');
 var minify = require('html-minifier').minify;
 
-var templatePath = path.resolve(__dirname+'/template');  
+var templatePath = path.resolve(__dirname+'/template/page');  
 var mainPath = path.resolve(__dirname+'/main'); 
 var pubilcPath = path.resolve(__dirname+'/public'); 
 var staticPath = path.resolve(__dirname+'/static');
-
-const templateFile = chokidar.watch(path.join(__dirname, '/template'));
-const mainFile = chokidar.watch(path.join(__dirname, '/main'));
-const staticFile = chokidar.watch(path.join(__dirname, '/main'));
  
 //获取插件部分的内容
 function getStaticContent(mainContent,fileName){
