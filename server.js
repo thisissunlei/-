@@ -60,16 +60,12 @@ function getStaticContent(mainContent,fileName){
             result = fs.readFileSync(staticPath+'/'+item, {
                 encoding: 'utf-8'
             }) 
-            var splitStr = item;
-            console.log(item == "data.json")
-            if(item == "data.json"){
-                splitStr = 'allData';
-            }
-            var templateReg = new RegExp('\\$\\{'+ splitStr +'\\}', 'ig');
+        
+            var templateReg = new RegExp('\\$\\{'+ item +'\\}', 'ig');
           
             var files = item.split('.');
             var suffix = files[files.length -1];
-            if(suffix !='js' && suffix !='json' && item !=='jsCode' && item !=='allData'){
+            if(suffix !='js' && item !=='jsCode' && item !=='allData'){
                 result = minify(result,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
             }
             mainContent= mainContent.replace(templateReg,result)
