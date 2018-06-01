@@ -12,14 +12,15 @@ var templatePath = path.resolve(__dirname+'/template/page');
 var mainPath = path.resolve(__dirname+'/main'); 
 var pubilcPath = path.resolve(__dirname+'/public'); 
 var staticPath = path.resolve(__dirname+'/static');
-console.log(setTemplate,"ooooooooo")
-const templateFile = chokidar.watch(path.join(__dirname, '/template'));
+
+const templateComponents = chokidar.watch(path.join(__dirname, '/template/components'));
+const templatePage = chokidar.watch(path.join(__dirname, '/template/templatePage'));
 const mainFile = chokidar.watch(path.join(__dirname, '/main'));
 const staticFile = chokidar.watch(path.join(__dirname, '/static'));
  
 
-templateFile.on('ready', () => {
-    templateFile.on('change', (path) => {
+templateComponents.on('ready', () => {
+    templateComponents.on('change', (path) => {
         getMainHtml();
     });
     // watcher.on('add', (path) => {
@@ -29,6 +30,20 @@ templateFile.on('ready', () => {
     //     console.log('<---- watched file remove, do something ---->');
     // });
 })
+
+templatePage.on('ready', () => {
+    templatePage.on('change', (path) => {
+        getMainHtml();
+    });
+    // watcher.on('add', (path) => {
+    //     console.log('<---- watched new file add, do something ---->');
+    // });
+    // watcher.on('unlink', (path) => {
+    //     console.log('<---- watched file remove, do something ---->');
+    // });
+})
+
+
 mainFile.on('ready', () => {
     mainFile.on('change', (path) => {
         getMainHtml();
