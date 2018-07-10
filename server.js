@@ -98,12 +98,12 @@ function getMainHtml(){
        
         data.forEach(function(item, index) {  
          
-            fs.readFile(mainPath+'/'+item,'utf8',function(err,files){  
-                var result =  files;
+            fs.readFile(mainPath+'/'+item,'utf8',function(err,files){
+              const result = files;
                 // result = result.replace('${'+fileName+'}',static)
                
                  getStaticContent(result,item);
-                
+
                 
        
             })  
@@ -122,24 +122,45 @@ function render(templateContent,fileName){
     fs.readdir(templatePath, 'utf8', function (err,data) {  
       
        
-        data.forEach(function(item, index) {  
-          
-            fs.readFile(templatePath+'/'+item,'utf8',function(err,files){  
-               
-                // var result = files.replace(/要替换的内容/g, '替换后的内容');  
-                var result = minify(files,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true})
-                templateContent = templateContent.replace(templateReg,"'"+ result+"'")
-                fs.writeFile(pubilcPath+'/'+item, templateContent, 'utf8', function (err) {  
-                     if (err) return console.log(err);  
-                });  
-       
-            })  
-        });  
-      
+        // data.forEach(function(item, index) {
+
+            // fs.readFile(templatePath+'/'+item,'utf8',function(err,files){
+            //    console.log(item,"=======")
+            //     // var result = files.replace(/要替换的内容/g, '替换后的内容');
+            //     var result = minify(files,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true})
+            //     templateContent = templateContent.replace(templateReg,"'"+ result+"'")
+            //     fs.writeFile(pubilcPath+'/'+item, templateContent, 'utf8', function (err) {
+            //          if (err) return console.log(err);
+            //     });
+            //
+            // })
+
+          // var tempFile = fs.readFileSync(templatePath+'/'+item,'utf8');
+          // console.log(item,"=======")
+          // var result = minify(tempFile,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true})
+          // templateContent = templateContent.replace(templateReg,"'"+ result+"'")
+          // fs.writeFile(pubilcPath+'/'+item, templateContent, 'utf8', function (err) {
+          //     if (err) return console.log(err);
+          // });
+
+        // });
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i];
+            fs.readFile(templatePath+'/'+item,'utf8',function(err,files){
+                console.log(item,"=======")
+              // var result = files.replace(/要替换的内容/g, '替换后的内容');
+              const result = minify(files,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true})
+            const tempCon = templateContent.replace(templateReg,"'"+ result+"'")
+              // templateContent = templateContent.replace(templateReg,"'"+ result+"'")
+              fs.writeFile(pubilcPath+'/'+item, tempCon, 'utf8', function (err) {
+                   if (err) return console.log(err);
+              });
+          })
+        }
     });  
 }
 // render();
-app.listen(3000,()=>{                
+app.listen(3000,()=>{
     console.log("server running at 127.0.0.1:3000");   
 });
 

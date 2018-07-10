@@ -287,3 +287,10 @@ table.detail-table .detail-content-tr td:first-child{
 .period{
     width: 135px;
 }
+
+.agreementParts p {
+    margin: 2px;
+    font-size: 12px;
+    color: #666666;
+    line-height: 22px;
+}
