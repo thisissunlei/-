@@ -22,7 +22,7 @@ var files = fs.readdirSync('./doc');
 // }).catch((error) => {
 //   console.log(error)
 // })
-mammoth.convertToHtml({path: "doc/3续约协议.docx"})
+mammoth.convertToHtml({path: "doc/5变更协议.docx"})
     .then(function (result) {
       var html = result.value; // The generated HTML
       var messages = result.messages; // Any messages, such as warnings during conversion
