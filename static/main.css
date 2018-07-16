@@ -294,3 +294,7 @@ table.detail-table .detail-content-tr td:first-child{
     color: #666666;
     line-height: 22px;
 }
+
+.hasUnderline {
+    text-decoration: underline;
+}
