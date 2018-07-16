@@ -166,13 +166,17 @@ body {
 
 .logo-hander {
     padding-bottom: 12px;
+    padding-top: 14px;
 }
 
 .hander-detail {
     position: absolute;
-    top: -11px;
+    top: 10px;
     right: -94px;
+}
 
+.hander-detail.hander-detail-english {
+    top: 4px;
 }
 
 .hander-detail div {
