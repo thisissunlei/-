@@ -51,7 +51,7 @@ function getMainHtml(){
         data.forEach(function(item, index) {  
          
             fs.readFile(mainPath+'/'+item,'utf8',function(err,files){  
-                var result =  files;
+                const result =  files;
                 // result = result.replace('${'+fileName+'}',static)
                 console.log(result,"kkkkkk")
                  getStaticContent(result,item);
@@ -71,10 +71,10 @@ function render(templateContent,fileName){
        
         data.forEach(function(item, index) {  
           
-            fs.readFile(templatePath+'/'+item,'utf8',function(err,files){  
+            fs.readFile(templatePath+'/'+item,'utf8',function(err,files){
                 console.log("pppppppp")
                 // var result = files.replace(/要替换的内容/g, '替换后的内容');  
-                var result = minify(files,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true})
+                const result = minify(files,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true})
                 // templateContent = templateContent.replace(templateReg,result)
                 fs.writeFile(pubilcPath+'/build-'+item, templateContent, 'utf8', function (err) {  
                      if (err) return console.log(err);  

@@ -5,13 +5,13 @@ ${template-hander.html}
 <div class="big-hander">
     第一部分&nbsp;&nbsp;会籍详情
     <div>
-        Part1  Membership Details Form
+        Part Ⅰ  Membership Details Form
     </div>
 </div>
 <div class="default-hander">
-    签约信息
+    主体信息
     <div>
-            Contract information
+        Information of two parties
     </div>
 </div>
 <div></div>
@@ -27,7 +27,7 @@ ${template-hander.html}
             <td>
                 会员公司/贵方（法定登记的名称）
                 <div>
-                        Member Company Name (Legal Entity Name)
+                        Member Company Name (Registered Name)
                 </div>
             </td>
             <td>
@@ -88,7 +88,7 @@ ${template-hander.html}
 </table>
 <div class="tabel-hander">
     &nbsp;KrSpace&nbsp;服务主体信息
-    <div>&nbsp;Krspace Service Principal Information</div>
+    <div>&nbsp;Krspace Service Entity’s Information</div>
 </div>
 <table cellspacing="0" class="main-table">
     <tbody>
@@ -185,13 +185,13 @@ ${template-hander.html}
                 <div>Service term</div>
             </td>
             <td class="date-format">
-                {{start_date}}至{{end_date}}
+                From {{start_date}} to {{end_date}}
             </td>
         </tr>
         <tr>
             <td>
                 服务保证金
-                <div>Service Retainer</div>
+                <div>Service deposit</div>
             </td>
             <td>
                 ￥{{performance_bond}}
@@ -200,7 +200,7 @@ ${template-hander.html}
         <tr>
             <td>
                 服务费总额
-                <div>Total ServiceFees during ServiceTerm</div>
+                <div>Total Service Fees</div>
             </td>
             <td>
                 ￥{{prefer_service_fee}}
@@ -217,7 +217,7 @@ ${template-hander.html}
         <tr class="firstRow">
             <td>
                 付款周期（除首期付款外）
-                <div>Payment cycle (except down payment)</div>
+                <div>Payment term (except for down payment)</div>
             </td>
             <td>
                 {{pay_type}}
@@ -226,7 +226,7 @@ ${template-hander.html}
         <tr>
             <td>
                 首付款金额
-                <div>Initial payment amount</div>
+                <div>Down payment amount</div>
             </td>
             <td>
                 ￥{{first_service_fee}}
@@ -235,7 +235,7 @@ ${template-hander.html}
         <tr>
             <td>
                 首付款日期
-                <div>Initial payment Date</div>
+                <div>Down payment Date</div>
             </td>
             <td>
                 {{first_pay_date}}
@@ -265,8 +265,8 @@ ${template-hander.html}
     </div>
 </div>
 <div class="tabel-hander">
-    签约价明细
-    <div>Contract Price Details</div>
+    月服务费
+    <div>Month service fee</div>
 </div>
 <table cellspacing="0" class="detail-table" data-name="wf_station_contract_detail">
     <tbody>
@@ -276,16 +276,16 @@ ${template-hander.html}
                 <div>Office space</div>
             </td>
             <td >
-                标准价
-                <div>Standard Price</div>
+                标准月费
+                <div>Standard monthly service fee</div>
             </td>
             <td>
                 优惠
                 <div>Preferential</div>
             </td>
             <td style="border-radius: 0px 8px 0px 0px;">
-                签约价
-                <div>Contract price</div>
+                签约月费
+                <div>Contract monthly service fee </div>
             </td>
         </tr>
         <tr data-content="wf_station_contract_detail">
@@ -317,37 +317,35 @@ ${template-hander.html}
     <div class="formula">
         <div class="formula-content">
             <p>
-                1.各月日单价=签约价/所在自然月天数（四舍五入，保留2位有效小数）。
+                1. 日单价=签约月费/所在日历月天数（四舍五入，保留2位有效小数）。
             </p>
             <p>
-                1. Price per month = Contract price/The natural month of the day (rounded, keep 2 digits valid decimal).
-
+                1. Daily service fee= Contract monthly fee/the numbers of calendar  month (rounding, keep 2 valid decimal).
             </p>
             <p>
-                2.各办公场所服务费金额=各月日单价*零散天数（所在自然月的零散天数）之和+签约价*月数（整自然月月数）。
+                2. 各办公场所服务费金额=日单价*天数（所在日历月的天数）之和+签约月费*月数（整日历月月数）。
             </p>
             <p>
-                2.The amount of service fee = each month daily unit price * scattered days (in the natural months of the scattered days) and + Contract price * months (whole natural month number).
-
+                2. service fee for each office space = daily service fee * the number  of the days for the calendar month and + Contract monthly service fee * the number of whole calendar month.
             </p>
             <p>
-                3.服务费总额=各办公场所服务费金额之和。
+                3. 服务费总额=所有办公场所服务费金额之和。
             </p>
             <p>
-                3. Total service charge = The sum of the amount of service charge in each office space.
+                3. Total service charge = The sum of service fees for all  office space.
             </p>
             <p>
-                4.本协议中的“日、天”指自然日；“月”指自然月。
+                4. 本协议中的“日、天”指日历日；“月”指日历月。
             </p>
             <p>
-                4."Day " in this agreement means natural day; "Month" means natural month.
+                4."Day " in this agreement means calendar day; "Month" means calendar month.
             </p>
         </div>
     </div>
 </div>
 <div class="tabel-hander">
-    付款信息明细
-    <div>Payment details</div>
+    付款信息
+    <div>Payment information</div>
 </div>
 <table cellspacing="0" class="detail-table" id="wf_station_contract_period" data-name="wf_station_contract_period" style="border-radius: 8px 8px 0px 0px;">
     <tbody>
@@ -357,16 +355,16 @@ ${template-hander.html}
                 <div>Number of periods</div>
             </td>
             <td >
-                款项
-                <div>Cost</div>
+                费用
+                <div>Fees</div>
             </td>
             <td class="period"> 
                 费用期间
-                <div>Cost period</div>
+                <div>Fees period</div>
             </td>
             <td>
-                最晚付款日期
-                <div>Latest payment Date Fee Amount</div>
+                付款到期日
+                <div>due payment Date</div>
             </td>
             <td style="text-align: right;">
                 费用金额
@@ -396,19 +394,19 @@ ${template-hander.html}
 </table>
 <div class="detail-end">
     <div>
-        1.会员首期服务费是指：
-        <div>1.A member&prime;s Initial service fee means.</div>
+        1.会籍首期服务费是指：
+        <div>1.A member&prime;s first payment means.</div>
     </div>
     <div>
-        &nbsp;(1) 若会员首期服务起始日为自然月的1号的，则会员首期服务费=签约价*月数（付款周期对应的月数）；
+        &nbsp;(1) 若服务期起始日为日历月的第一天，则会籍首期服务费=签约月费*月数（根据付款周期确定的月数）
         <div>
-        &nbsp;(1) If the member first service starting day for the natural month of 1th, then the member of the first service fee = Contract price * MONTHS (the number of months corresponding to the payment cycle);
+        &nbsp;(1) If the commencement date of the service term is the first day of the calendar month, then the first payment for service fee = Contract monthly fee * the number of months based on the payment cycle;
         </div>
     </div>
     <div>
-        &nbsp;(2) 若会员首期服务起始日为自然月的1号以外的日期，则会员首期服务费=首期服务起始日至所在自然月尾日的零散天数*所在月日单价+签约价*月数（付款周期对应的月数）。
+        &nbsp;(2) 若服务期起始日为日历月的第一天以外的日期，则会籍首期服务费=首期服务起始日至所在日历月尾日的天数*日单价+签约月费*月数（根据付款周期确定的月数）。
         <div>
-            &nbsp;(2) If the member initial service date start day is the natural month outside the 1th date, then the member initial service fee = The initial service start date to the day of the day of the month is scattered the number of days * The monthly unit price + Contract price * Month Number (the month number corresponding to the payment cycle).
+            &nbsp;(2) If the commencement date of the service term is not the first day of the calendar month, then the first payment for service fee = The number of days from the commencement date to the end the first month * The daily service fee + Contract monthly fee * the number of months based onthe payment cycle.
         </div>
     </div>
     <div>
@@ -418,15 +416,17 @@ ${template-hander.html}
         </div>
     </div>
     <div>
-        <span style="text-decoration:underline;">&nbsp;(1)服务保证金和首期服务费应于①服务期限起始日②协议日期后第7日前（上述两日期以先达成者为准）支付到&nbsp;KrSpace&nbsp;账户，逾期未付至&nbsp;KrSpace&nbsp;账户的，则本协议【应视为终止】，除非&nbsp;KrSpace&nbsp;同意继续延续本协议效力。</span>
+        <span style="text-decoration:underline;">&nbsp;(1)服务保证金和首期服务费应于服务期限起始日或本协议签署日后第7日（上述两日期以先到之日为准）之前支付到 KrSpace指定 账户，逾期未付至 KrSpace 账户的，则本协议【应视为终止】，除非 KrSpace 同意延长会员付款期限。
+</span>
         <div style="text-decoration:underline;">
-            &nbsp;(1) The service retainer and the initial service fee shall be paid to the Krspace account before the 7th day after the date of ② agreement (the above two dates are subject to the ①) at the beginning of the service period.If the retainer and initial service fe has not been paid to the Krspace account, this Agreement shall be deemed to be terminated unless Krspace agrees to continue the validity of this agreement
+            &nbsp;(1) The service deposit and the first payment shall be paid to the Krspace’s designated account before the commencement date of the service period or the 7th day after the date of this agreement (which one is earlier). If the member fails to pay the abovementioned fees to Krspace on time,
+            this Agreement shall be deemed to be terminated unless Krspace agrees to extend the payment period of the member.
         </div>
     </div>
     <div>
-        <span style="text-decoration:underline;">&nbsp;(2)自第2期服务费开始，贵方需要在第2期服务期限起始日前15至30日内完成支付。即贵方须保证&nbsp;KrSpace&nbsp;在最晚付款日期前收到相应款项。</span>
+        <span style="text-decoration:underline;">&nbsp;(2)自第2期服务费开始，贵方需要在每期服务期限起始日前15至30日内完成支付。即贵方须保证 KrSpace 在每期付款到期日期前收到相应款项。</span>
         <div style="text-decoration:underline;">
-             &nbsp;(2) Starting from the 2nd issue of service charges, you need to complete the payment within 15-30 days before the start of the 2nd period.You must ensure that Krspace is received before the latest payment date corresponding payments.
+             &nbsp;(2) From the 2nd payment of service charges, you need to complete the payment within 15-30 days before the beginning of the due payment date for each period.You must make sure that Krspace receives the relevant fees due before the due payment date.
         </div>
     </div>
 </div>
@@ -436,80 +436,73 @@ ${template-hander.html}
 ${template-hander.html}
 <div class="big-hander">
     第二部分&nbsp;&nbsp;条款和条件
-    <div>Part two  Terms and Conditions</div>
+    <div>Part Ⅱ  Terms and Conditions</div>
 </div>
 <div class="tow-hander">
     1.定义
     <div>1.Definitions</div>
 </div>
 <div class="er-content">
-    1.1“授权代表人”指在签约阶段获得相关授权、其行为对贵方具有法律约束力的个人。
-    <br/>1.1“Authorized representative” means an individual authorised to legally bind your company.
+    1.1“授权代表人”指获得贵方相关授权、其行为对贵方具有法律约束力的个人。
+    <br/>1.1“Authorized representative” means an individual authorized by your company whose act shall legally bind your company.
 
     <br/>1.2“场地容量”指会籍详情中“场地容量”处规定的数值。
-    <br/>1.2“Capacity” means number set forth in the Membership Details Form in the “Capacity” field.
+    <br/>1.2“Capacity” means the number set forth under the “Number” in the Membership Details Form.
 
-    <br/>1.3“主要办公场所”指办公场地所在场所，详见会籍详情。
-    <br/>1.3“Main Premises” means the Premises in which the Office Space is located, as set forth in the Membership Details Form.
+    <br/>1.3“会员公司”、“会员”或“贵方”指与 KrSpace 签署会员协议并在会籍详情中列明的公司、实体或个人。
+    <br/>1.3“Member Company” 、“Member”or “you” means the company, entity, or individual that enters into a Membership Agreement with Kr Space and is listed in the Membership Details Form.
 
-    <br/>1.4“会员”指会员公司/贵方在会员名单中授权享受服务（见下文定义）的任何人士。
-    <br/>1.4“Member” means each person you authorize on your Member List as being allowed to receive the Services (defined below).
+    <br/>1.4“办公场地”指会籍详情所列办公室房间号和/或工作区。
+    <br/>1.4“Office Space” means the office number and/or workspace location(s) speciﬁed in the Membership Details Form.
 
-    <br/>1.5“会员公司”或“贵方”指与&nbsp;KrSpace&nbsp;签署会员协议并在会籍详情中列明的公司、实体或个人。
-    <br/>1.5“Member Company” or “you” means the company, entity, or individual that enters into a Membership Agreement with Kr Space and is listed in the Membership Details Form.
+    <br/>1.5“办公大楼”指 KrSpace 向会员提供或拟提供办公室、工作站、其他工作区和/或其他服务所在的整栋大楼或部分大楼
+    <br/>1.5“Office building” means a building or portion of a building in which Kr Space offers to Members or plans to offer offices, workstations, other workspaces, and/or other services to Members.
 
-    <br/>1.6“办公场地”指会籍详情所列办公室房间号和/或工作区。
-    <br/>1.6“Office Space” means the office number and/or workspace location(s) speciﬁed in the Membership Details Form.
+    <br/>1.6“管理员”指代表会员与“ KrSpace ”进行沟通联系的负责人。
+    <br/>1.6“Administrator” means the person on behalf of Member which is responsible for communicating with  Kr Space.
 
-    <br/>1.7“场所”指&nbsp;KrSpace&nbsp;向会员提供或拟提供办公室、工作站、其他工作区和/或其他服务所在的整栋大楼或部分大楼。
-    <br/>1.7“Premises” means a building or portion of a building in which Kr Space offers or plans to offer offices, workstations, other workspaces, and/or other services to Members.
+    <br/>1.7“KrSpace 会员网络”指可通过互联网或 KrSpace 的移动应用程序访问的 KrSpace 会员专属在线社区。
+    <br/>1.7“Kr Space Member Network” means the Kr Space members online community accessed through the internet or KrSpace app.
 
-    <br/>1.8“管理员”指入驻场所的会员与“&nbsp;KrSpace&nbsp;”之间的主要联系人。
-    <br/>1.8“Administrator” means the primary in-Premises Member contact for Kr Space.
-
-    <br/>1.9“KrSpace&nbsp;会员网络”指可通过互联网或&nbsp;KrSpace&nbsp;的移动应用程序访问的&nbsp;KrSpace&nbsp;会员专属在线社区。
-    <br/>1.9“Kr Space Member Network” means the Kr Space members-only online community accessed through the internet or our mobile app.
-
-    <br/>1.10注册保证金：如经&nbsp;KrSpace&nbsp;书面同意使用注册地址的，贵方需要交纳供担保之用的款项。
-    <br/>1.10 Registration Deposit: If the registered address is approved in writing by Krspace, you will need to pay the registration deposit for guarantee.
+    <br/>1.8注册地址保证金：如经 KrSpace 书面同意使用注册地址的，贵方需要交纳注册地址保证金。
+    <br/>1.8Deposit for registered address: If Krspace agrees in writing that the office space is used for purpose of registered address, you will need to pay the deposit for registered address.
 
     <div class="tow-hander">
-        2.会员待遇
+        2.会员的权利义务
         <div>
-            2.The Benefits of Membership
+            2.The rights and obligations of Members
         </div>
     </div>
     <div class="er-content">
-        2.1服务。在遵守本协议条款和条件（包括任何附件、附表（统称“协议”）及经事先通知，KrSpace&nbsp;不时向贵方提供的任何其他政策的前提下，KrSpace&nbsp;将在期限（见下文定义）内尽合理商业努力向贵方（及贵方会员，视具体情况而定）提供下列服务。在本协议中，该等服务简称“服务”。
-        <br/>2.1 Services. Subject to the terms and conditions of this agreement, including any attachments, exhibits, and supplements (collectively, the “Agreement”) and any other policies we make available to you with prior notice from time to time, during the Term (defined below), KrSpace will use commercially reasonable efforts to provide you (and your Members, as applicable) the services described below. These services are referred to in this Agreement as the “Services.”
+        2.1服务。在会员遵守和履行本协议条款和条件（包括任何附件（统称“协议”）及KrSpace 不时制定及修改的任何其他管理规定的前提下，KrSpace 将在期限（见下文定义）内向会员提供下列服务（以下简称“服务”）。
+        <br/>2.1 Services. Subject to Members observation and performance of the terms and conditions of this agreement, including any attachments (collectively, the “Agreement”) and any other regulations we adopt and amend from time to time, during the Term (defined below), KrSpace will provide the services described below(hereinafter referred toas the “Services.”)
 
-        <br/>2.1.1进出办公场地的排他权限（除&nbsp;KrSpace&nbsp;员工、KrSpace&nbsp;委托的第三方以外）。
-        <br/>2.1.1 Exclusive access to the Office Space(Except for KrSpace employees, third parties appointed by Krspace).
+        <br/>2.1.1 进出办公场地的权限。
+        <br/>2.1.1 access to the Office Space.
 
-        <br/>2.1.2办公场地的定期维护服务。
+        <br/>2.1.2 办公场地的定期维护服务。
         <br/>2.1.2 Regular maintenance of the Office Space.
 
-        <br/>2.1.3办公场地内的家具。质量和数量与&nbsp;KrSpace&nbsp;向入驻场所内类似办公场地、工作站和/或其他工作区（视具体情况而定）的其他&nbsp;KrSpace&nbsp;会员公司提供的家具一致。
-        <br/>2.1.3 Furnishings for the Office Space of the quality and in the quantity typically provided to other Kr Space Member Companies with similar office space, workstations, and/or other workspace, as applicable, in the Premises.
+        <br/>2.1.3 办公场地内的家具。
+        <br/>2.1.3 Furniture for the Office Space.
 
 
-        <br/>2.1.4根据&nbsp;KrSpace&nbsp;官网或app上的服务条款，访问和使用&nbsp;KrSpace&nbsp;会员网络站点的权限。
-        <br/>2.1.4 Access to and use of the KrSpace Member Network site and App in accordance with the terms of services available at krspace.cn .
+        <br/>2.1.4 根据 KrSpace 官网最新服务条款，访问和使用 KrSpace 会员网络站点的权限。
+        <br/>2.1.4 Access to the KrSpace Member website and App in accordance with the latest terms of services at the official website of krspace.
 
-        
-        <br/>2.1.5根据&nbsp;krspace.cn&nbsp;中有关规则访问和使用共享互联网的权限。
-        <br/> Access to and use of the shared Internet connection in accordance with the terms of services available at krspace.cn.
-        
-        <br/>2.1.6使用场所内向我方会员和会员公司提供的打印机、复印机和/或扫描仪的权限。
-        <br/>2.1.6 Use of the printers, copiers and/or scanners available to our Members and Member Companies at a Premises.
 
-        
-        <br/>2.1.7在贵方主要办公场所及在任何其他&nbsp;KrSpace&nbsp;场所使用该会议室的权限。该等使用均需事先预约，并视可用性而定。
-        <br/>2.1.7 Use of the conference rooms in your Main Premises and use of conference rooms in any other KrSpace Premises, in each case subject to availability and your prior reservation of such conference rooms.
+        <br/>2.1.5 根据 krspace官网 中有关最新规则访问和使用共享互联网的权限。
+        <br/>2.1.5 Access to shared Internet connection in accordance with the latest terms of services at the official website of krspace.
+
+        <br/>2.1.6 使用办公大楼内向会员提供的打印机、复印机和/或扫描仪的权限。
+        <br/>2.1.6 Use of the printers, copiers and/or scanners available to Members at the Office Building.
+
+        <br/>2.1.7 使用会议室的权限。该等使用均需事先预约，并视可用性而定。
+        <br/>2.1.7 Use of the conference rooms subject to prior reservation and availability.
 
         
         <br/>2.1.8使用办公场地暖气和空调的权限。
-        <br/>2.1.8 Heat and air-conditioning in the Office Space.
+        <br/>2.1.8 Heat and air-conditioning at the Office Space.
         
         <br/>2.1.9为合理、可接受的行政办公目的使用电力的权限。经&nbsp;KrSpace&nbsp;同意的非行政办公目的的电力使用，KrSpace&nbsp;将向贵方收取额外的费用。
         <br/>2.1.9 Electricity for reasonably acceptable administrative office use. We reserve the right to reject, or charge extra fees for, the use of electricity for purposes other than administrative office use.
@@ -518,76 +511,88 @@ ${template-hander.html}
         <br/>2.1.10 Have the right to use the water bar onsite and enjoy the beverage provided in the water bar.
         
         <br/>2.1.11参加或享受仅限会员参加或享受的活动、待遇及促销的权限。
-        <br/>Opportunity to participate in members-only events, beneﬁts and promotions.
-        
-        <br/>2.2特定服务。贵方主要办公场所以外的任何&nbsp;KrSpace&nbsp;场所之会议室及办公场地之暖气和空调可能仅可在正常营业日的正常营业时间内（见下文定义）使用。“正常营业时间”通常指正常营业日的09:00至18:00，“正常营业日”指周一至周五，国家法定节假日发生调休的除外。
-        <br/>2.2 Certain Services. Use of the conference rooms in any KrSpace Premises other than your Main Premises and heat and air-conditioning in the Office Space may only be available during Regular Business Hours on Regular Business Days, as defined below. 
-        “Regular Business Hours” are generally from 09:00 to 18:00 on Regular Business Days, “Regular Business Days” means all national working days from Monday to Friday(including but not limited to), except national public holidays.
-        
-        <br/>2.3&nbsp;KrSpace&nbsp;保留权利。为提供服务、处理安全或紧急事务或其他目的，KrSpace&nbsp;有权在发出通知或不发出通知的情况下进出贵方办公场地。KrSpace&nbsp;将尽量以口头或电子形式提前通知贵方，并尽量遵守合理的安全程序以对贵方进行保密。KrSpace&nbsp;可以临时移动贵方办公场地内的家具。KrSpace&nbsp;保留变更贵方办公场地的权利，前提是，KrSpace&nbsp;如此行事不得实质减少贵方所配的办公场地或不得实质减少相关设施的面积或不得降低服务质量。KrSpace&nbsp;还可随时合理变更或减少向贵方办公场地提供的服务或家具的项目。服务可以由KrSpace、关联方或第三方提供。
-        <br/>2.3 Our Reserved Rights. 
-        We are entitled to access your Office Space, with or without notice, in connection with our provision of the Services, for safety or emergency purposes or for any other purposes. 
-        We will attempt to notify you verbally or electronically in advance, and will endeavor to respect reasonable security procedures to protect the confidentiality of your business. We may temporarily move furniture contained in your Office Space. 
-        We reserve the right to alter your Office Space, provided that we will not do so in a manner that substantially decreases the square footage of your assigned Office Space or reduce the quality of service. 
-        We may also reasonably modify or reduce the list of Services or furnishings provided for your Office Space at any time. The Services may be provided by us, an affiliate or a third party.
-        
-        <br/>2.4未及时提供办公场地。如&nbsp;KrSpace&nbsp;交付的办公场地无法满足正常使用用途的（包括替换方案中提供的本协议约定外办公场地及&nbsp;KrSpace&nbsp;关联公司提供的办公场地等），经贵司书面通知后20个工作日内双方协商后仍无法解决的，贵司有权单方解除协议，KrSpace&nbsp;退还贵司服务保证金、已付但未发生的会员服务费。
-        <br/>2.4 Did not provide office space in time. If the office space delivered by Krspace cannot  meet the normal use (including the office space provided in the replacement programme and the office space provided by the Krspace affiliated company), your company shall have the right to terminate the agreement unilaterally after negociationbetween the two parties within 20 working days after we receiving your written notice. If the agreement is terminated under this situation, then Krspace shall refund your paid however not used servicefees.
-        
+        <br/>2.1.11 o participate in or enjoy events, beneﬁts and promotions for members only.
+
+        <br/>2.2特定服务。贵方办公场地以外的任何 KrSpace 场所之会议室及办公场地之暖气和空调可能仅可在正常营业日的正常营业时间内（见下文定义）使用。“正常营业时间”通常指正常营业日的09:00至18:00，“正常营业日”指周一至周五等工作日，国家法定节假日除外。
+        <br/>2.2 Certain Services. Use of the conference rooms in any KrSpace Premises other than your Main Premises and heat and air-conditioning in the Office Space may only be available during Regular Business Hours on Regular Business Days, as defined below.
+        “Regular Business Hours” are generally from 09:00 to 18:00 on Regular Business Days, “Regular Business Days” means all working days from Monday to Friday, except for national public holidays.
+
+
+        <br/>2.3&nbsp;KrSpace&nbsp;保留权利。
+        <br />2.3.1 因提供服务、、维修维护、处理安全或紧急事务等原因，KrSpace 有权在发出事先通知或不发出事先通知的情况下进入贵方办公场地。
+        KrSpace 将尽量以口头或通过网站公告、等电子邮件等形式提前通知贵方，并尽量采取合理的安全措施对贵方资料进行保密。KrSpace 可以临时移动贵方办公场地内的家具。
+        KrSpace 保留变更贵方办公场地的权利，前提是，KrSpace可提供与原办公场地面积和条件类似的新办公场地。
+        KrSpace 还可随时合理变更或调整向贵方办公场地提供的服务或家具的项目。本协议项下的服务可以由KrSpace、关联方或第三方提供。
+        <br />2.3.1 Reserved Rights by KrSpace.
+        Kr Space shall have the right  to enter into your Office Space, with or without prior notice, for provision of the Services, repair and maintenance,  safety or emergency etc.
+        We will try to notify you verbally or through announcement at website/ email etc. in advance, and will try to take  reasonable measures to protect the confidentiality of your documents. We may temporarily move furniture contained in your Office Space.
+        We reserve the right to change your Office Space, provided that we will provide another new office space similar with former office space in size and conditions.
+        We may also reasonably modify or adjust the content of Services or furnishings provided for your Office Space at any time. The Services under this Agreement may be provided by us, our affiliates or a third party.
+
+        <br/>2.3.2 贵方知晓本协议约定的办公场地尚在建设中，在本协议第一部分 会籍详情中载明的办公场地的编号/名称仅供参考，不作为最终入驻/交付的依据。KrSpace有权单方变更或者调整办公场地的编号/名称，并在作出调整后通知贵方。实际交付时以KrSpace邮件/书面函件通知的编号/名称为准，但KrSpace应承诺对办公场地编号/名称的调整不得影响原约定办公场地的工位数量或其他条件。
+
+
+        <br/>2.4 会员解约。  如 KrSpace 未按期交付办公场地或交付的办公场地无法满足正常办公使用用途的，经贵司书面通知后20个工作日内仍无法提供符合正常办公用途的办公场地的（包括在同一社区提供相似条件的办公场地或者 KrSpace 关联公司提供的相似条件办公场地等），贵司有权单方解除协议，KrSpace 退还贵司服务保证金、已付但未发生的会员服务费。
+
+        <br/>2.4 Member’s right of termination If Krspace fails to provide the office space on time or the office space provided by Krspace fails to meet the requirement of normal office use (including the office space provided in the replacement programme and the office space provided by the Krspace affiliated company), your company shall have the right to terminate the agreement unilaterally if we fails to provide the space suitable for office  within 20 working days after receiving your written notice. In this case, Krspace shall refund deposits and service fee to you.
+
     </div>
     <div class="tow-hander">
         3.贵方会员
         <div>3.Your Members</div>
     </div>
     <div class="er-content">
-        3.1更新会员名单。仅会员名单所列人员将视为“会员”，有权享受本协议所述待遇。贵方会员可于以下日期中较晚者起开始使用、访问和/或享受服务：（i）起始日，或（ii）KrSpace&nbsp;确认将相关人员加入会员名单之日。贵方应对会员名单的准确性负责。贵方管理员可通过其&nbsp;KrSpace&nbsp;会员网络之“会员管理”工具更改贵方的会员名单。如需在贵方会员名单中增加超出会籍详情中分配的会员数量的新会员，应由贵方管理员使用已向&nbsp;KrSpace&nbsp;备案的管理员电子邮箱，向会籍详情底部所列电子邮箱发送电子邮件。变更请求邮件应载明老会员和新会员的姓名、电子邮箱及变更生效日。若经常使用贵方办公场地的会员或其他人员的数量超过场地容量，则贵方应支付届时适用的额外费用，详见&nbsp;krspace.cn&nbsp;中的规则。在将任何会员加入会员名单后，KrSpace&nbsp;将在&nbsp;KrSpace&nbsp;会员网络中为该会员创建一份档案，该创建之档案仅载明该会员的姓名、联系电话和会员公司，包括照片在内的其余信息仅在贵方或贵方会员自行决定添加时予以添加。KrSpace、KrSpace&nbsp;员工和代理及其他会员均可查阅该档案。该档案中还可载明由会员发布的其他信息。
-    <br/>3.1 Updating the Member List. Only those individuals set forth on the Member List will be deemed to be “Members” and entitled to the beneﬁts described in this Agreement. Your Members will be able to begin using, accessing, and/or receiving the Services on the later of (i) the Start Date or (ii) the date we confirm the addition of such individual to the Member List. You are responsible for maintaining the accuracy of the Member List. Your Primary Member may make changes to your Member List via the Primary Member’s “Member Management” tool on the KrSpace Member Network. To add new Members to your Member List in excess of the number allocated on the Membership Details Form, you must have your Administrator send an email, from the Administrator’s email account on file with KrSpace, to the email address speciﬁed at the bottom of Membership Details Form. The email requesting the change must include the name(s) and email address(es) ofthe departing and new Member(s) and the effective date of the change. If the number of Members or other individuals regularly using your Office Space exceeds the Capacity, you will be required to pay the then current additional fee as set forth on krspace.cn.using desks outside of the Office Space will not count towards this limit. We reserve the right to further limit the number of Members allowed at any point.Upon the addition of a Member to the Member List, KrSpace will create a profile for such Member on the KrSpace Member Network. The created profile will include only the Member’s name and the Member Company; any additional information,including photograph, shall be added solely as determined by you or your Members.. Such profile will be viewable by us, our employees and agents, and other members. Such profile may include other information published by Members.
-        
-        <br/>3.2变更或移除管理员。管理员通常享有变更或终止本协议的唯一权限。管理员通常作为&nbsp;KrSpace&nbsp;就贵方会员、实体办公场地或场所相关事宜与贵方联系的主要联系人。KrSpace&nbsp;有权将管理员作出或接收通讯的行为视作相关会员公司的行为。会员公司或其法定代表人（“法定代表人”）有权推翻管理员（视具体情况而定）提出的任何请求，前提是，KrSpace&nbsp;在管理员作出该项请求后24小时内收到该法定代表人的请求。KrSpace&nbsp;有权要求提供合理信息，以确认声称为法定代表人的人士确为法定代表人，并有权酌情决定特定的职务是否构成“法定代表人”。法定代表人还有权移除或变更管理员。若指定为管理员的人士不再服务于会员公司或不再经常使用办公场地，则除非收到法定代表人的指示，否则&nbsp;KrSpace&nbsp;将在合理判断后指定其他人士为管理员。
-        <br/>3.2 Changes or Removal of Administrator .Administrator generally has the sole authority to make changes to or terminate this Agreement. An Administrator will generally serve as KrSpace’s primary contact regarding matters that involve your Members, the physical Office Space or the Premises. We will be entitled to rely on communications to or from the Administrator as notice to or from the applicable Member Company. However, the Member Companyor its Legal Representative (“Legal Representative”) will have the authority to override the request of Administrator, as applicable, provided that we receive such a request within 24 hours following such Authorised Signatory’s or Primary Member’s request. We will be entitled to request reasonable information to conﬁrm that an individual claiming to be a Legal Representative truly is one and to exercise our discretion in determining whether a particular position constitutes a “Legal Representative”. A Legal Representative will also have the authority to remove or replace the individual serving as Administrator. Unless we receive instructions from the  Legal Representative, if the individual designated as the Administrator ceases to provide services to the Member Company or ceases using the Office Space regularly, we will use our reasonable judgment in designating a replacement Administrator.
-        
-        <br/>3.3授权签字人。在本协议签约阶段，获得贵方相关授权，代表贵方签署本协议的自然人，其应满18周岁，其行为对贵方具有法律约束力。
-        <br/>3.3 Authorized signatory. At the signing stage of this agreement, your signing person need to acquire theauthorization of you to sign this agreement and  shall be 18 yearsor more, and the conduct of whom is legally binding.
+        3.1更新成员名单。仅成员名单所列人员将视为“会员”，有权享受本协议所述待遇。贵方成员可于以下日期中较晚者起开始使用、访问和/或享受服务：（i）起始日，或（ii）KrSpace 确认将相关人员加入成员名单之日。贵方应对成员名单的准确性负责。贵方管理员可通过其 KrSpace 会员网络之“会员管理”工具更新贵方的成员名单。如需在贵方成员名单中增加超出会籍详情中分配的成员数量的新成员，应由贵方管理员使用已向 KrSpace 备案的管理员电子邮箱，向会籍详情底部所列电子邮箱发送电子邮件。变更请求邮件应载明被替代的老成员和新成员的姓名、电子邮箱及变更生效日。若经常使用贵方办公场地的成员或其他人员的数量超过场地容量，则贵方应支付届时适用的额外费用，详见 krspace官网中的规则。在将任何人员加入成员名单后，KrSpace 将在 KrSpace 会员数据库中为该成员创建一份档案，该创建之档案仅载明该成员的姓名、联系电话和成员公司，包括照片在内的其余信息仅在贵方或贵方成员自行决定添加时予以添加。KrSpace、 KrSpace 员工和代理及其他会员均可查阅该档案。
 
-        
+        <br/>3.1 Update of the your Member List. Only those individuals set forth on your Member List will be deemed to be “Members” and entitled to the rights and beneﬁts described in this Agreement. Your Members will be able to begin using, accessing, and/or receiving the Services on the later of (i) the Commencement Date or (ii) the date we confirm the updated Member List. You are responsible for the accuracy of the Member List. Your Administrator may update your Member List via the “Member Management” tool on the KrSpace Member Network. To add extra Members to your Member List in excess of the number limit set forth in the Membership Details Form, your Administrator send an email from the Administrator’s email account filed with KrSpace, to the email address speciﬁed at the bottom of Membership Details Form. The email for update of Member Listshall include the name(s) and email address(es) of the replaced Member(s) and new Member(s) and the effective date of the  updated list. If the number of Members or other individuals regularly using your Office Space exceeds the Capacity, you will be required to pay the additional fee applicable at that time (please see details as set forth on official website of krspace. Upon the addition of a Member to the Member List, KrSpace will create a profile for such Member on the KrSpace Member Database. The information ofthe profile will include only  the Member’s name, phone number and the Member Company; Any additional information including photograph, shall be added solely as determined by you or your Members. Such profile will be open to  us, our employees and agents, and other members.
+
+
+        <br/>3.2会员的管理员。管理员为会员方的指定联系人。会员管理员作出的任何承诺或行为均被视作相关会员的行为，包括变更或终止本协议。会员公司可以撤销管理员做出的任何行为，前提是，KrSpace 在管理员作出该项行为后24小时内收到该公司的书面通知(需公司加盖公章且法定代表人签字)。会员需根据KrSpace要求提供法定代表人证明等合理信息。。会员可随时书面通知(需公司加盖公章且法定代表人签字)我们变更其管理员。若指定为管理员的人士不再服务于会员公司或不再使用办公场地，则会员应在上述事项发生前书面通知KrSpace指定新的管理员。
+
+        <br/>3.2 Member’s Administrator. An Administrator is  Member’s designated contact. All the commitments or acts from Administrator shall be deemed as Members’ commitments or acts,including amend or terminate this Ageement.  However, the Member Company can revoke the commitments and acts from Administrator, provided that we receive such notice to revoke(company chop and Legal Representative’s signature)  within 24 hours after Administrator’s commitments and acts.  Member shall provide reasonable information including legal representative certificate according to our requirement. Members can send us written notice (company chop and Legal Representative’s signature) to change their Administrators.  If the individual designated as the Administrator leaves the Member Company or doesn’t  use the Office Space any more, Member shall inform KrSpace to appoint a replacement for Administrator before occurrence of the aforementioned matters.
+
+
+        <br/>3.3授权签字人。在本协议签约阶段，贵方须向签署本协议的人出具授权委托书，其行为对贵方具有法律约束力。
+        <br/>3.3 Authorized signatory. At the signing stage of this agreement, you shall issue a power of attorney to the person to sign this agreement on behalf of you and   this Agreement shall be legally binding on you.
+
+
     </div>
     <div class="tow-hander">
-        4.会员服务费；付款
+        4.会籍服务费；付款
         <div>
                 4. Membership Service fee Fees; Payments
 
         </div>
     </div>
     <div class="er-content">
-        4.1签约付款。贵方在递交经填写和签字的协议后，应向&nbsp;KrSpace&nbsp;支付贵方会籍详情所列款项：服务保证金及及首期服务费。
-        4.1 Payments Due Upon Signing. Upon submitting a signed and completed Agreement, you will be obligated to deliver to us, in the amount(s) set forth on your Membership Details Form, the Service Retainer and initial servicefee.
-
+        4.1付款。贵方在递交经签字盖章的协议前，应向 KrSpace 支付贵方会籍详情所列款项：服务保证金及首期服务费。
+        4.1 Payments. Upon submitting a signed and completed Agreement, you shall pay  the amount(s) set forth on your Membership Details Form, the Service Deposit and down payment.
         <br/>
         
-        <br/>4.2会员服务费。会籍详情所列会员服务费仅包括会籍详情所列会员数量的服务费。其他会员需支付额外费用，详见&nbsp;KrSpace&nbsp;官网（&nbsp;krspace.cn&nbsp;）。
-        <br/>4.2 The Membership Fee set forth on the Membership Details Form covers the Services for only the number of Members indicated in the Membership Details Form. Additional Members will result in additional fees as set forth on the official website of KrSpace.
+        <br/>4.2会籍服务费。会籍详情所列服务费仅包括会籍详情所列贵方成员数量的服务费。如增加成员需支付额外费用，详见 KrSpace 官网（ krspace.cn ）。
+        <br/>4.2 The Membership Service Fee. Service Fee set forth on the Membership Details Form only covers the Services for the number of your Members listed in the Membership Details Form. You shall pay additional fees for Additional Members , (please see details as set forth on the official website of KrSpace. )
+
+
+        <br/>4.3发票及财务信息。在取得贵方付款的前提下，KrSpace 将向管理员提供发票和其他出账相关文件、信息及通知，除非会籍详情列明其他人为账单联系人。如需变更账单联系人，应由会员按照本协议规定发出通知。
+        <br/>4.3 Invoices and Financial Information. Subject to the receipt of the relevant payment from you, Kr Space will provide invoices and other billing-related documents, information and notices to the Administrator, unless a different Billing Contact is indicated on the Membership Details Form. Change of the Billing Contact will require written notice from Members in accordance with this Agreement.
+
+
+        <br/>4.4超额费。贵方每月将获得一定额度的会议室、复印机以及打印机之权限，详情在 krspace.cn 中载明。此项权利应在当月使用，不得递延至下月。若贵方超额使用该等借用权，则应支付超额费。目前的超额费费率表见 krspace.cn 。KrSpace 可以不时提高各项超额费的费率。
+        <br/>4.4 Additional Fees. Each month, you can use conference room,  copies and printers for limited number/volume, as speciﬁed on krspace.cn . The number/volume of use for each month may not be rolled over from month to month. If actual number/volume of use exceeds allocated amounts, you will be responsible for paying extra fees. The extra fee rate schedule shall be listed and adjusted on krspace.cn  from time to time.
 
         
-        <br/>4.3发票；财务信息。<span style="text-decoration:underline;">在取得贵方付款的前提下，KrSpace&nbsp;将向管理员发送或以其他方式提供发票和其他出账相关文件、信息及通知，除非会籍详情列明其他人为账单联系人。如需变更账单联系人，应由管理员按照本协议规定发出通知。</span>
-        <br/>4.3 Invoices; Financial Information. Subject to the receipt of the relevant payment from you, Kr Space will send or otherwise provide invoices and other billing-related documents, information and notices to the Administrator, unless a different Billing Contact is indicated on the Membership Details Form. Change of the Billing Contact will require notice from the Authorised Signatory in accordance with this Agreement.
-
-        
-        <br/>4.4借用权限；超额费。贵方每月将获得一定额度的会议室、黑白复印机以及打印机之权限，详情在&nbsp;krspace.cn&nbsp;中载明。此项权利应在当月使用，不得递延至下月。若贵方超额使用该等借用权，则应支付超额费。目前的超额费费率表见&nbsp;krspace.cn&nbsp;。KrSpace&nbsp;可以不时提高各项超额费的费率。
-        <br/>4.4 Credits; Overage Fees. Each month, you will receive a certain number of credits for conference room use and a certain number of credits for color and black and white copies and printouts, as speciﬁed on krspace.cn . These allowances may not be rolled over from month to month. If these allocated amounts are exceeded, you will be responsible for paying fees for such overages. The current overage fee schedule is listed on krspace.cn .All overage fees are subject to increase from time to time.
+        <br/>4.5逾期付款违约金。若贵方未在付款到期前交纳会员服务费或任何其他已产生而尚未支付费用的，则贵方应每日按照未支付费用的千分之三支付逾期付款违约金。
+        <br/>4.5 Penalties for Overdue Payment. If you fails to pay the Membership Fee or any other fee before the due date, you need to pay the late charge which is 0.3% of the outstanding amounts per day .
 
 
-        
-        <br/>4.5逾期付款违约金。<span style="text-decoration:underline;">若贵方未在付款周期内交纳会员服务费或任何其他已产生而尚未支付费用的，则贵方应每日按照未支付费用的千分之三支付逾期付款违约金。</span>
-        <br/>4.5 Penalties for Overdue Payment. If payment for the Membership Fee or any other accrued and outstanding fee is not made within the payment term, you need to pay the lare chargewhich is 0.3% of the overdue amount per day .
-
-        
         <br/>4.6付款方式。KrSpace&nbsp;仅接受以&nbsp;KrSpace&nbsp;在本协议签署过程中或本服务期限内不时告知贵方的方式支付本协议项下所有款项。若贵方付款信息发生任何变更，应及时通知&nbsp;KrSpace。在任何给定时间，贵方仅可使用一种方式支付本协议项下款项。
-        <br/>4.6 Form of Payment. We accept payment of all amounts speciﬁed in this Agreement solely by the methods we communicate to you during the sign up process or from time to time during the term of this Agreement. You are required to inform us promptly of any changes to your payment information. Only a single payment method may be used at any given time to make payments under this Agreement.
+        <br/>4.6Payment Method. We accept payment of all amounts speciﬁed in this Agreement solely by the methods we inform you from time to time during the sign up process or during the term of this Agreement. You are required to inform us promptly of any changes to your payment information. Only a single payment method may be used at any given time to make payments under this Agreement.
 
-        
-        <br/><span style="text-decoration:underline;">4.7未付费用。任何逾期未付费用应按实际欠款收取。在收到贵方付款后，KrSpace&nbsp;将首先以之清偿欠款，再依次清偿到期的费用。在所有欠款清偿完毕后，剩余金额将用于支付当期费用。若在&nbsp;KrSpace&nbsp;向贵方发出催款通知后，贵方仍不支付到期未付的费用，则&nbsp;KrSpace&nbsp;可以自行决定暂停服务或按照第5.5条规定终止本协议。</span>
-        <br/><span style="text-decoration:underline;">4.7 Outstanding Fees. Any outstanding fees will be charged in arrears . When we receive funds from you, we will ﬁrst apply funds to any balances which are in arrears. Once past balances are satisﬁed, any remaining portion of the funds will be applied to current fees due. If any payments remain outstanding after we provide notice to you, we may, in our sole discretion, withhold Services or terminate this Agreement in accordance with Section 5.5.</span>
-        
+
+
+        <br/>4.7未付费用。任何逾期未付费用应按实际欠款收取。在收到贵方付款后，KrSpace 将首先以之清偿欠款，再依次清偿当期的费用。在所有欠款清偿完毕后，剩余金额将用于支付当期费用。若在 KrSpace 向贵方发出催款通知后，贵方在KrSpace指定期限内仍不支付，则 KrSpace 可以自行决定暂停服务或按照第5.5条规定终止本协议。
+        <br/>4.7 Outstanding Fees. Any outstanding fees will be charged in arrears . When we receive payment from you, we will ﬁrst apply payment to any amounts which are in arrears. Once outstanding fees for previous terms have been paid off, any remaining portion of the funds will be applied to current fees due. If you fails to pay the amounts due within our specified period, after we provide notice to you, we may, in our sole discretion, cease to provide Services or terminate this Agreement in accordance with Section 5.5.
+
         <div class="tow-hander">
             5.期限与终止
             <div>5.Term and Termination</div>
@@ -596,176 +601,172 @@ ${template-hander.html}
     <br/>5.1 Term.
 
         <br/>5.1.1服务期限。本协议自双方签字及盖章后生效（“生效日”），前提是，KrSpace&nbsp;在以下两者中较晚者发生之前并无义务向贵方提供服务：（i）KrSpace&nbsp;收到贵方服务保证金及首期会员服务费之日，或（ii）起始日。
-        <br/>5.1.1 Service term. This Agreement will be effective when signed and sealed by both parties (“Effective Date”); provided that we have no obligations to provide you with the Services until the later of (i) the date on which payment of your Service Retainer, Set-Up Fee and the first member service charge date has been received by us or (ii) the Start Date.
-        
-        <br/>5.1.2搬入期限。贵方有权在服务期限起始日的固定时间（一般为9:00至18:00，周一至周五，法定节假日调休的除外）搬入办公场地；如办公场地所在物业管理方有特殊约定的，以物业管理方约定为准。如贵方存在特殊需求，需提前协商。
-        <br/>5.1.2 Move into the term. You shall have the right to move to the office space at a fixed time (usually from 9:00 to 18:00, Monday to Friday, excluding the statutory holidays) at the beginning of the service period, if there’sa special agreement by the Property Management party of the office premises, the agreement by the Property Management party shall prevail. If you have special needs, youneed to consult in advance.
-        
-        <br/>5.2<span style="text-decoration:underline;">贵方可在服务期限起始日前（不包含当日）取消本协议。贵方可在起始日前通知&nbsp;KrSpace&nbsp;取消本协议，则&nbsp;KrSpace&nbsp;收取的服务保证金将不予退还。如&nbsp;KrSpace&nbsp;收取了贵方会员服务费的，在收到贵方取消本协议通知后的十个工作日内，KrSpace&nbsp;退还实际收取的会员服务费。</span>
-        <br/>5.2<span style="text-decoration:underline;"> Cancellation Prior to Start Date by You. You may cancel this Agreement prior to the Start Date upon delivery of notice to us.If you can notify Krspace to cancel this agreement before the start date, the service retainer received by Krspace will not be refunded. If Krspace has received your member service fee, Krspace refund the actual member service charge within 10 working days after receiving your cancellation of this agreement.</span>
-        
-        <br/>5.3在本协议服务期限内，贵方不得提前终止本协议。如贵方提前终止，则<span style="text-decoration:underline;">&nbsp;KrSpace&nbsp;已经收取的费用不予退还，同时&nbsp;KrSpace&nbsp;保留追索剩余服务期限内会员服务费全款的权利。</span>
-        <br/>5.3 You shall not terminate this Agreement in advance within the terms of service of this agreement. If you terminate in advance, <span style="text-decoration:underline;">all the payment Krspace has  charged will not be refunded, while krspace reserves the right to recover the the full membership fee of the remainder of the service period .</span>
+        <br/>5.1.1 Service term. This Agreement will be effective when signed and sealed by both parties (“Effective Date”); provided that we have no obligations to provide you with the Services until the later of (i) the date on which payment of your Service Deposit  and the first member service charge has been received by us or (ii) the Commencement Date.
+      <br/>5.1.2搬入期限。贵方有权在服务期限起始日的固定时间（一般为9:00至18:00，周一至周五，法定节假日调休的除外）搬入办公场地;如办公场地所在物业管理公司有特殊约定的，以物业管理方约定为准。如贵方存在特殊需求，需提前协商。
+      <br/>5.1.2 the term of entering into office space. You shall have the right to move to the office space at a fixed time (usually from 9:00 to 18:00, Monday to Friday, excluding the statutory holidays) on the commencement date of the service period, if there’s a special regulations by the Property Management Company of the office premises, the special regulations by the Property Management Company shall prevail. If you have special needs, you need to communicate with us in advance.
+      <br/>5.2<span style="text-decoration:underline;">贵方可在服务期限起始日前（不包含当日）取消本协议。贵方可在起始日前通知&nbsp;KrSpace&nbsp;取消本协议，则&nbsp;KrSpace&nbsp;收取的服务保证金将不予退还。如&nbsp;KrSpace&nbsp;收取了贵方会员服务费的，在收到贵方取消本协议通知后的十个工作日内，KrSpace&nbsp;退还实际收取的会员服务费。</span>
+        <br/>5.2 Cancellation Prior to Commencement Date by You. You may cancel this Agreement prior to the Commencement Date through sending written notice to us. If you cancel this agreement before the commencement date, the service deposit received by Krspace will not be refunded to you. If Krspace has received your member service fee, Krspace refund the actual member service charge within 10 working days after receiving your written notice for cancellation of this agreement.
 
-        
-        <br/>5.4续约。贵我双方应在本协议服务期限届满前60日内，协商本协议续签事宜，如继续合作的，应在协商周期内另行签署续约协议；如未在本协议服务期限届满前达成续约意向的，KrSpace&nbsp;将不再为贵方提供本协议约定的办公场地服务，则本协议服务期限届满之日自动终止。
-        <br/>5.4 Renewal. The two parties shall, within 60 days before the expiration of the terms of service of this agreement, to negotiate the renewal of this agreement, if both parties continue to cooperate, the Contract renewal agreement shall be signed within the negotiation period, and if the intention of renewing the contract is not reached before the expiration of the term of service of this agreement, KrSpace will no longer provide the office space service as agreed in this agreement, The expiration date of this Agreement shall be terminated automatically.
-        
-        <br/>5.5&nbsp;KrSpace&nbsp;终止或暂停履行本协议。
+      <br/>5.3在本协议服务期限内，贵方不得提前终止本协议。如贵方提前终止，则<span style="text-decoration:underline;">&nbsp;KrSpace&nbsp;已经收取的费用不予退还，同时&nbsp;KrSpace&nbsp;保留追索剩余服务期限内会员服务费全款的权利。</span>
+        <br/>5.3 You shall not terminate this Agreement in advance within the terms of service of this agreement. If you terminate in advance, all the payment Krspace has received will not be refunded, while krspace reserves the right to claim for the   full membership fee for the residue of the service period .
+
+      <br/>5.4续约
+      <br />5.4.1贵方若续约，须在服务期限届满日的30日前向KrSpace提出书面申请。若贵方未按该期限向甲方提出续约的，或虽已按期限提出续约要求，但双方未能于本协议服务期限届满日的30日前达成一致，本协议即于服务期限届满时终止。
+      <br />5.4.2 服务期限届满前60日内，贵方允许KrSpace在事先通知贵方后带领潜在的意向客户在合理时间内视察该办公场地。
+      <br/>5.4 Renewal. The two parties shall, within 60 days before the expiration of the terms of service of this agreement, to negotiate the renewal of this agreement, if both parties continue to cooperate, the Contract renewal agreement shall be signed within the negotiation period, and if the letter of intention for renewing the contract is not entered into  before the expiration of the term of service of this agreement, The expiration date of this Agreement shall be terminated automatically.
+      <br/>5.5&nbsp;KrSpace&nbsp;终止或暂停履行本协议。
         <br/>5.5 Termination or Suspension by Us.
 
         
-        <br/>5.5.1在下列任一情形发生时，KrSpace&nbsp;可在按照本协议第9.8条规定向贵方发出通知后暂停服务或立即终止本协议：（i）贵方或任何会员违反本协议；（ii）&nbsp;KrSpace&nbsp;对场所享有的权利终止、到期或发生重大灭失时；（iii）贵方在&nbsp;KrSpace&nbsp;向贵方发出催款通知后仍不支付到期未付的费用；（iv）贵方或贵方任何会员未遵守条款和条件、KrSpace&nbsp;会员网络服务条款、KrSpace&nbsp;无线网络服务条款或我司提供的或适用于贵方的任何其他政策或指示。即使本协议终止或到期，贵方仍应对逾期未付的款项负责，KrSpace&nbsp;仍可行使收取该等款项的权利。一旦较早发生以下情形之一（x）本协议终止或期满；（y）贵方将该会员从会员名单中去掉或（z）KrSpace&nbsp;通知贵方该会员重大或反复违反本协议，个人会员将不再被允许访问服务且不再被授权访问主要办公场所。
-        <br/>5.5.1 We may withhold Services or immediately terminate this Agreement by providing notice to you in accordance with Section 9.8 of this Agreement: (i) upon breach of this Agreement by you or any Member; (ii) upon termination, expiration or material loss of our rights in the Premises; (iii) if any outstanding fees are still due after we provide notice to you; (iv) if you or any of your Members fail to comply with the terms and conditions of the Kr Space Member Network Terms of Service, our Wireless Network Terms of Service, or any other policies or instructions provided by us or applicable to you; or (v) at any other time, when we, in our reasonable discretion, see ﬁt to do so. You will remain liable for past due amounts, and we may exercise our rights to collect due payment, despite termination or expiration of this Agreement.An individual Member will no longer be allowed access to the Services and is no longer authorized to access the Main Premises upon the earlier of (x) the termination or expiration of this Agreement; (y) your removal of such Member from the Member List or (z) our notice to you that such Member materially or repeatedly violated this Agreement.
-        
-        <br/><span style="text-decoration:underline;">5.5.2如&nbsp;KrSpace&nbsp;提前收回办公场地或非基于协议约定之情形解除或终止合同的，应提前三十（30）日通知，贵方应按照通知时间搬离，KrSpace&nbsp;退还服务保证金、已付但未发生的服务费。</span>
-        <br/><span style="text-decoration:underline;">5.5.2 If Krspace wants to get back the office space in advance or terminates the agreement out of the circumstances stated in the agreement ,it, should give notice  30 (30) days in advance, you should then in accordance with the notice time to move out from the office space,and Krspace should refund service retainer, paid but not incurred service charges.
-            </span>
-        
-        <br/>5.6服务保证金
-        <br/>5.6 Service Retainer.
+        <br/>5.5.1在下列任一情形发生时，KrSpace 可在按照本协议第9.8条规定向贵方发出通知后暂停服务或立即终止本协议：（i）贵方（贵方任何成员的行为视为贵方的行为）违反本协议；（ii） KrSpace 对场所享有的权利终止、到期或房屋发生重大灭失时；（iii）贵方在 KrSpace 向贵方发出催款通知后在指定期限内仍不支付到期未付的费用；（iv）贵方(或贵方任何成员的行为视为贵方的行为）未遵守本协议条款和条件、KrSpace 会员网络服务条款、KrSpace 无线网络服务条款或我司提供的或适用于贵方的任何其他政策或指示。即使本协议终止或到期，贵方仍应对逾期未付的款项负责，KrSpace 仍可行使收取该等款项的权利。
+      一旦较早发生以下情形之一（x）本协议终止或期满；（y）贵方将该成员从成员名单中去掉或（z）KrSpace 通知贵方其成员重大或反复违反本协议，个人成员将不再被允许访问服务且不再被授权进入办公场地。
+      <br/>5.5.1 We may cease to provide Services or immediately terminate this Agreement by providing notice to you in accordance with Section 9.8 of this Agreement: (i) upon breach of this Agreement by you（any act of your Members shall be deemed as your act）; (ii) upon termination, expiration of our rights in the office space or material loss of the Premises; (iii) if you fail to pay any outstanding fees within the designated period after we provide notice to you; (iv) if you (any act of your Members shall be deemed as your act) fail to comply with the terms and conditions of this Agreement/the Kr Space Member Network Terms of Service/our Wireless Network Terms of Service, or any other policies or regulations provided by us or applicable to you;
+      You will remain liable for outstanding amounts before the termination or expiration, and we may exercise our rights to claim for outstanding fees , despite termination or expiration of this Agreement.
+      An individual Member will no longer be allowed access to the Services and is no longer permitted to enter into the office space upon the earlier of the following circumstances:
+      (x) the termination or expiration of this Agreement; (y) your removal of such Member from your Member List or (z) our notice to you that such Member materially or repeatedly violated this Agreement
+
+      <br/>5.5.2 KrSpace 有权提前终止本协议，收回办公场地。如 KrSpace 提前收回办公场地或提前终止合同的，应至少提前三十（30）日通知，贵方应按照通知时间搬离，KrSpace 退还服务保证金、已付但未发生的服务费。
+      <br/>5.5.2 KrSpace shall have the right earlier terminate this Agreement and take back the office space. If Krspace wants to earlier take back the office space  or earlier terminate the agreement,we should give written notice at least  30 (30) days in advance, you should then in accordance with the notice time to move out from the office space, and Krspace should refund service deposit, service fees paid but not incurred.
+
+      <br/>5.6服务保证金
+        <br/>5.6 Service Deposit
       
         <br/>5.6.1服务保证金将作为贵方履行本协议项下所有义务的保证金，而非用于抵扣应付费用的准备金。若贵方欠付我方其他费用，贵方不得将该等费用从服务保证金中扣除，而须另行支付该等费用。
-        <br/>5.6.1 The Service Retainer will be held as a retainer for performance of all your obligations under this Agreement and is not intended to be a reserve from which fees may be paid. In the event you owe us other fees, you may not rely on deducting them from the Service Retainer, but must pay them separately.
-        
-        <br/>5.6.2在（i）本协议期满正常终止或（ii）贵方向我方提供我方付款所需的所有账户信息之日（以两者中较晚者为准）起三十（30）天内（或相关法律规定的更早期限内），我方将通过银行转账或&nbsp;KrSpace&nbsp;与贵方沟通的其他方式向贵方退还服务保证金或在扣除贵方对我方欠付的费用或其他款项后退还其余额。退还服务保证金还须以贵方完整履行本协议项下所有义务（包括本协议终止或到期后适用的任何义务）为前提。
-        <br/>5.6.2 We will return the Service Retainer, or any balance after deducting outstanding fees and other costs due to us, to you by bank transfer or other method that we communicate to you within thirty (30) days (or earlier if required by applicable law) after the later of (i) the  expiration of this Agreement and (ii) the date on which you provide to us all account information necessary for us to make such payment. Return of the Service Retainer is also subject to your complete performance of all your obligations under this Agreement, including any obligations applicable following termination or expiration of this Agreement.
+        <br/>5.6.1 The Service Deposit will be held as a security for performance of all your obligations under this Agreement and is not intended to be a reserve from which fees may be paid. In the event you owe us any fees payable under this Agreement, you may not rely on deducting such fees from the Service Deposit, but must pay them separately.
 
-        
-        <br/>5.7终止后移除财产。贵方应在本协议终止或到期前，将贵方、贵方会员、贵方访客或贵方会员访客的财产从办公场地和场所中移除。KrSpace&nbsp;有权在提前合理期限向贵方发出通知后，处置在本协议终止或到期后遗留在办公场地或场所中的任何财产，且没有存放该等财产的任何义务。贵方应放弃就该等财产或&nbsp;KrSpace&nbsp;对该等财产的处置提出任何索赔或要求的权利。贵方应负责支付&nbsp;KrSpace&nbsp;因移除上述财产而合理产生的任何费用。本协议终止或到期后，KrSpace&nbsp;不再转交或保留交付给&nbsp;KrSpace&nbsp;的信件或其他包裹。
-        <br/>5.7 Removal of Property Upon Termination. Prior to the termination or expiration of this Agreement, you will remove all of your, your Members’, and your or their guests’ property from the Office Space and Premises. After providing you with reasonable notice, we will be entitled to dispose of any property remaining in or on the Office Space or Premises after the termination or expiration of this Agreement and will not have any obligation to store such property, and you waive any claims or demands regarding such property or our handling of such property. You will be responsible for paying any fees reasonably incurred by us regarding such removal. Following the termination or expiration of this Agreement, we will not forward or hold mail or other packages delivered to us.
+      <br/>5.6.2在（i）本协议期满或正常终止及（ii）贵方向我方提供账户信息之日（以两者中较晚者为准）起三十（30）天内，我方将在如下条件：a.贵方腾空清理自有物品后返还办公场地；b.结清所有应支付款项；c.注册地址迁出或注销（如有）；d.不存在尚未解决的争议或者纠纷等条件同时满足的情况下，向贵方退还服务保证金余额。如保证金不足抵扣未结清费用或者赔偿 KrSpace 实际损失的， KrSpace 有权向贵方追索不足部分。
+      <br/>5.6.2 We will refund the balance of Service Deposit after deducting outstanding service fees and other costs owing to us, to you within thirty (30) days after the later of (i) the  expiration of this Agreement or termination and (ii) the date on which you provide to us all account information on the condition that(a) you give vacate possession of the premises to us;(b)settle all the payment due;(c)deregistered all the address(if any);(d)settle all the disputes(if any). If the deposit is insufficient to deduct such outstanding fees, we shall have the right to claim for insufficient part.
+
+      <br/>5.7移除财产。贵方应在本协议终止或到期前，将贵方、贵方成员、贵方访客或贵方成员访客的财产从办公场地和场所中移除。 KrSpace 有权在向贵方发出通知后，处置在本协议终止或到期后遗留在办公场地或场所中的任何财产，且没有存放该等财产的任何义务。贵方应放弃就该等财产或 KrSpace 对该等财产的处置提出任何索赔或要求的权利。贵方应负责支付 KrSpace 因移除和处理上述财产而合理产生的任何费用。本协议终止或到期后，KrSpace 不再转交或为贵方保留信件或其他包裹。
+      <br/>5.7 Removal of Property. In the event of the termination or expiration of this Agreement, you shall remove all of your, your Members’, and your or their guests’ properties from the Office Space and Office Building. After providing you with notice, we shall have the right to dispose of any property left over in the Office Space or Office Building after the termination or expiration of this Agreement and will not have any obligation to store such property, and you waive any claims or demands regarding such property or our disposal of such property. You will be responsible for paying any fees reasonably incurred by us regarding such removal and disposal of such properties. Following the termination or expiration of this Agreement, we will not forward or keep  mail or other packages for you.
 
 
-        
-        <br/>5.8注销注册地址。
+
+
+      <br/>5.8注销注册地址。
         <br/>5.8 Deregistration of Registered Address.
 
         
         <br/>5.8.1除非获得&nbsp;KrSpace&nbsp;事先书面同意，贵方不得将&nbsp;KrSpace&nbsp;提供的地址作为贵方注册地址。
-        <br/>5.8.1 You may not use an address provided by us as your registered address unless you have received our prior written consent.
-        
-        <br/>5.8.2若贵方在获得&nbsp;KrSpace&nbsp;书面同意后将&nbsp;KrSpace&nbsp;提供的地址作为贵方注册地址，或贵方将现有注册地址迁移至&nbsp;KrSpace&nbsp;提供的注册地址，则在本协议终止前或到期前30天内，贵方应向当地主管机关（包括当地工商行政管理局）办理地址注销手续，并向&nbsp;KrSpace&nbsp;提供变更后的营业执照正本，供&nbsp;KrSpace&nbsp;审查核证。
-        <br/>5.8.2 If, following the receipt of such written consent,you are using an address provided by us as your registered address, or you change your existing registered address to a registered address provided by us, upon termination or expiration of this Agreement, you shall complete the deregistration of such address with the relevant local authorities, including the relevant local Administration of Industry and Commerce, within 30 days of the date of such termination or expiration, and shall provide to us an original updated business license for our review and verification.
+        <br/>5.8.1 You may not use an address provided by us as your registered address unless you have obtained our prior written consent.
 
-        
-        <br/><span style="text-decoration:underline;">5.8.3若贵方未在上述30天期限届满前办理注册地址注销手续并向&nbsp;KrSpace&nbsp;提供变更后的营业执照作为证据的：（1）则贵方已经交纳的注册保证金，KrSpace&nbsp;不予退还；且（2）则每延迟一个日历月（不满一个日历月，按一个日历月计），贵方同意支付相当于会员服务费以下百分比的费用：第一个完整日历月（不满一个日历月，按一个日历月计），50%；第二个日历月，100%；第三个日历月及其后各日历月，150%；且（3）KrSpace&nbsp;有权向注册地址所在行政机关进行举报；且（4）如上述（1）-（3）的措施无法弥补&nbsp;KrSpace&nbsp;遭受的损失的，KrSpace&nbsp;有权在贵方已经交纳的服务保证金中进行扣除或另行向贵方收取。</span>
-        <br/><span style="text-decoration:underline;">5.8.3 For each whole or partial calendar month after such 30 day deadline has elapsed that you have not deregistered the registered address and provided to us proof of the same in the form of an updated business license, you agree to pay a percentage of your Membership Fee as follows: for the first whole or partial calendar month, 50%; for the second calendar month, 100%; for the third calendar month and each calendar month thereafter, 150%.  Such fees may be deducted from your Service Retainer or separately charged to you, in our sole discretion. In the event that such fees are insufficient to compensate us for our losses incurred due to your breach under this Section 5(g), we shall be entitled to recover such excess losses from you.</span>
+      <br/>5.8.2若贵方在获得 KrSpace 书面同意后将 KrSpace 提供的地址作为贵方注册地址则在本协议终止前或到期前30天内，贵方应向当地主管机关（包括当地工商行政管理局）办理地址注销手续，并向 KrSpace 提供变更后的营业执照正本，供 KrSpace 审查核证。
+      <br/>5.8.2 If the address provided by us is used as your registered address according to our written consent, upon termination or expiration of this Agreement, you shall complete the deregistration of such address with the relevant local authorities, including the relevant local Administration of Industry and Commerce, within 30 days of the date of such termination or expiration, and shall provide to us an original updated business license for our review and verification.
 
-        <br/><span style="text-decoration:underline;">5.8.4贵方使用注册地址应合法经营、照章纳税；贵方如有违反法律法规经营的，KrSpace&nbsp;有权提前解除本协议，并要求贵方迁出注册地址，贵方已经交纳的注册保证金不予退还。注册保证金无法弥补&nbsp;KrSpace&nbsp;遭受的实际损失的，可从贵方的服务保证金中扣除或另行向贵方收取。</span>
-        <br/><span style="text-decoration:underline;">5.8.4 when you use the allocated address by Krspace to register your company,you need to be lawful to operate, pay taxes, if you violate the laws and regulations of the business, Krspace have the right to terminate this agreement in advance, and ask you to vacate the registered address, the registration deposit you have paid is non-refundable. If the registered deposit cannot make up for the actual loss suffered by krspace, it may be deducted from your service retainer or separately charged to you.
-            </span>
+      <br/>5.8.3若贵方未在本协议终止前或期限届满前30天内，提供变更后的营业执照作为注册地址变更/注销证据的：（1）则贵方已经交纳的保证金（包括服务保证金和注册保证金），KrSpace 不予退还；且（2）则每延迟一个日历月（不满一个日历月，按一个日历月计），贵方同意支付相当于会员服务费以下百分比的违约金：第一个完整日历月（不满一个日历月，按一个日历月计），50%；第二个日历月，100%；第三个日历月及其后各日历月，150%；且KrSpace 有权在贵方已经交纳的服务保证金中进行扣除或另行向贵方收取。如上述（1）-（2）的措施无法弥补 KrSpace 遭受的损失的，KrSpace有权进一步向贵方追索不足部分。同时，KrSpace 有权向注册地址所在行政机关进行举报。
+
+      <br/>5.8.3 If you fail to deregistered the registered address and provided the updated business license to us as proof within the aforementioned 30 days, you agree: (1) KrSpace shall not refund the registration deposit to you; (2) you shall pay liquidated damaged equivalent of a percentage of your Membership Fee as follows: for no more than one calendar month, 50%; for no more than two calendar months, 100%; for more than two calendar months, 150%. Such fees may be deducted from your Service Deposit or separately charged to you, in our sole discretion. In the event that such fees are insufficient to compensate us for our losses incurred due to your breach under this Section 5(g), we shall have the right to claim for such excess losses against you. Moreover, KrSpace have the right to report to the local Administration authority.
+
+      <br/>5.8.4贵方应合法经营、照章纳税，否则，KrSpace 有权提前解除本协议，收回办公场地，贵方已经交纳的保证金(含服务保证金和注册保证金)不予退还。保证金(含服务保证金和注册保证金)无法弥补 KrSpace 遭受的实际损失的，KrSpace有权进一步向贵方追索不足部分。
+      <br/>5.8.4 You need to  operate, pay taxes in accordance with law, otherwise, Krspace have the right to terminate this agreement in advance, and ask you to take back the office space, the deposit(including service deposit and registration deposit) you have paid  shall not be refunded to you. If the deposit cannot make up for the actual loss suffered by krspace, we shall have the right to claim for such excess losses against you.
 
     </div>
     <div class="tow-hander">
-        6.用房规则。除贵方使用的某一主要办公场所适用的规则、政策和/或程序外：
-        <div>
-            6.House Rules. In addition to any rules, policies and/or procedures that are specific to a Main Premises used by you:
-        </div>
+      6.用房规则。
+      <div>
+        6.House Rules for use of office space
+      </div>
     </div>
     <div class="er-content">
-        6.1贵方确认并同意：
-        <br/>You acknowledge and agree that:
+      6.1 除贵方使用的办公场所适用的规则、政策和/或程序外，贵方确认并同意：
+      <br/>In addition to any rules, policies and/or procedures that are applicable to your office space, you acknowledge and agree that:
 
+      <br/>6.1.1用于实际访问场所或办公场地的钥匙、门卡等物品始终为&nbsp;KrSpace&nbsp;财产。贵方应促使贵方会员爱护&nbsp;KrSpace&nbsp;财产。因该等财产遗失、被盗或遭破坏而产生的重置费用应由贵方承担；
+        <br/>The ownership of all keys, key cards and other such items used to enter into the Office Space shall belong to KrSpace. You will make sure  your Members to take good care of our property. You will be liable for fees of repurchasing such items if  such property be lost, stolen or destroyed;
 
+      <br/>6.1.2若贵方联系方式或付款信息发生任何变更，应立即通知&nbsp;KrSpace；
+        <br/>6.1.2you shall promptly notify us of any change of your contact information or payment information;
 
-        <br/>6.1.1用于实际访问场所或办公场地的钥匙、门卡等物品始终为&nbsp;KrSpace&nbsp;财产。贵方应促使贵方会员爱护&nbsp;KrSpace&nbsp;财产。因该等财产遗失、被盗或遭破坏而产生的重置费用应由贵方承担；
-        <br/>6.1.1 keys, key cards and other such items used to gain physical access to the Premises or the Office Space remain our property. You will cause your Members to safeguard our property and you will be liable for replacement fees should any such property be lost, stolen or destroyed;
-
-        
-        <br/>6.1.2若贵方联系方式或付款信息发生任何变更，应立即通知&nbsp;KrSpace；
-        <br/>6.1.2 you shall promptly notify us of any change to your contact and payment information;
-
-        
         <br/>6.1.3若&nbsp;KrSpace&nbsp;的服务或费用发生任何变更或其他信息发生任何更新，KrSpace&nbsp;将向贵方提供的电子邮箱发送电子邮件或者书面通知。贵方应负责查收该等邮件/函件，确保贵方会员知悉相关变更；
-        <br/>6.1.3 In the event there’s  any change of krspace services or fees or any updates to any other information, KrSpace will send you an email to your e-mail address or give you a written notice. You shall be responsible for checking the mails/letters to ensure that your members are aware of the relevant changes;
+        <br/>6.1.3 In the event there’s  any change of krspace services or fees or any updates to any other information, KrSpace will inform you by  email  or written notice. You shall be responsible for checking the mails/letters to ensure that your members are informed of the relevant changes;
 
-        
-        <br/>6.1.4提供给贵方使用的推车、手推车及其他搬运工具均不得在客梯内使用，除非&nbsp;KrSpace&nbsp;酌情批准该等使用；
-        <br/>6.1.4 carts, dollies and other freight items which may be made available may not be used in the passenger elevator except at our discretion;
-        
-        <br/>6.1.5贵方所有会员均已至少年满十八周岁；
+
+      <br/>6.1.4提供给贵方使用的推车、手推车及其他搬运工具均不得在客梯内使用，除非&nbsp;KrSpace&nbsp;酌情批准该等使用；
+        <br/>6.1.4 carts, dollies and other freight items which provided by us for your useshall not be used in the passenger elevator except for approval at our discretion;
+
+      <br/>6.1.5贵方所有会员均已至少年满十八周岁；
         <br/>6.1.5 all of your Members are at least 18 years of age;
 
         
-        <br/>6.1.6贵方应全面负责确保在相关法域内未达法定饮酒年龄的会员或宾客不得饮酒；
-        <br/>6.1.6 you shall be solely and fully responsible for ensuring that no alcohol is consumed by any of your Members or guests who is younger than the legal age for consuming alcohol in the applicable jurisdiction;
-
-        
-        <br/>6.1.7除&nbsp;KrSpace&nbsp;另有指示外，公共空间应由&nbsp;KrSpace&nbsp;所有会员公司、会员及访客共享，仅作临时使用，不得作为连续、日常的工作场地；
-        <br/>6.1.7 common spaces are to be enjoyed by all our Member Companies, members and guests unless otherwise instructed by us, and are for temporary use and not as a place for continuous, everyday work;
-
-        
-        <br/>6.1.8贵方在场所内举办任何活动之前，应向&nbsp;KrSpace&nbsp;发出合理通知，并完成所需的全部手续；
-        <br/>6.1.8 You shall give reasonable notice to Krspace and complete all formalities required before you hold any activity in the premises;
-
-        
-        <br/>6.1.9贵方应对贵方办公场地正常磨损以外的损害负责；
-        <br/>6.1.9 you will be responsible for any damage to your Office Space exceeding normal wear and tear;
-
-        
-        <br/>6.1.10未事先经&nbsp;KrSpace&nbsp;书面批准，贵方不得对办公场地作任何结构或非结构性改造或在办公场地安装墙壁附着物、家具或天线。在进行改造或安装情形下，贵方应承担改造或安装的全部成本和费用，并承担在本协议终止前，移除安装物和将改造物恢复原状所需的全部成本和费用。若&nbsp;KrSpace&nbsp;因该等改造、安装或移除而产生任何费用，且贵方未予偿付，则&nbsp;KrSpace&nbsp;将从服务保证金中扣除该等费用。任何情况下，贵方不得有任何这些行为。仅&nbsp;KrSpace&nbsp;社区团队的员工有权进行改造、安装、移除或恢复原状。联系您的社区团队成员，获取更多信息。
-        <br/>6.1.10 you may not make any structural or nonstructural alterations or installations of wall attachments, furniture or antennae in the Office Space without prior written approval by us. In the event that any alterations or installations are made, you shall be responsible for the full cost and expense of the alteration or installation and, prior to the termination of this Agreement, the removal of such items and the restoration necessitated by any such alterations. To the extent that we incur any costs in connection with such alteration, installation or removal which are not otherwise paid by you we shall deduct such costs from the Service Retainer. In no event are you permitted to perform any of these actions. Only the staffs of our community team are entitled to perform an alteration, installation, removal or restoration. Reach out to a member of your community team for more information;
+        <br/>6.1.6贵方应全面负责确保在办公场地及办公大楼内:a.未达法定饮酒年龄的会员或访客不得饮酒；b.贵方所有成员及访客禁止吸烟。
+      <br/>6.1.6 you shall be solely and fully responsible for ensuring that (a)no alcohol is consumed by any of your Members or guests who is younger than the legal age for consuming alcohol in the applicable jurisdiction;(b)all your members and invitees are prohibited to smoke in the building.
 
 
-        
-        <br/>6.1.11贵方与贵方会员的计算机、平板电脑、移动设备和其他电子设备应：（i）根据软件供应商提供的软件更新内容更新到最新版本；及（ii）不含有任何恶意软件、病毒、间谍软件、蠕虫、木马或旨在执行恶意、敌意和/或入侵性操作的任何程序。KrSpace&nbsp;有权从&nbsp;KrSpace&nbsp;网络中移除对&nbsp;KrSpace&nbsp;网络或用户造成威胁的任何设备，直至威胁得以修补为止；
-        <br/>6.1.11 you and your Members’ computers, tablets, mobile devices and other electronic equipment must be (i) kept up-to-date with the latest software updates provided by the software vendor and (ii) kept clean of any malware, viruses, spyware, worms, Trojans, or anything that is designed to perform malicious, hostile and/or intrusive operations. We reserve the right to remove any device from our networks that poses a threat to our networks or users until the threat is remediated; and
+
+      <br/>6.1.7除 KrSpace 另有指示外，公共空间应由 KrSpace 所有会员公司、会员及访客共享，仅作临时办公使用，不得作为连续、日常的工作场地；
+      <br/>6.1.7 common spaces used by all our Member Companies, members and guests unless otherwise instructed by us, are for temporary office use and not as a place for continuous, everyday work;
 
 
-        
-        <br/>6.1.12贵方同意&nbsp;KrSpace&nbsp;非排他并不可转让地在&nbsp;KrSpace&nbsp;官网面向公众的“会员”展示栏、视频和其他宣传材料中使用贵方名称和/或标识（连同其他会员公司），以标注贵方的&nbsp;KrSpace&nbsp;会员身份。贵方保证贵方的标识不侵犯任何第三方的权利且贵方完全有权提供该等同意。经事先三十（30）天通知，贵方可随时终止该同意。
-        <br/>6.1.12 you consent to our non-exclusive, non-transferable use of your Member Company name and/or logo in connection with identifying you as a Member Company of Kr Space, alongside those of other Member Companies, on a public-facing “Membership” display on the official website of KrSpace, as well as in video and other marketing materials.  You warrant that your logo does not infringe upon the rights of any third party and that you have full authority to provide this consent. You may terminate this consent at any time upon thirty (30) days’ prior notice.
+      <br/>6.1.8贵方在场所内举办任何活动之前，应向&nbsp;KrSpace&nbsp;发出合理通知，并完成所需的全部手续；
+        <br/>6.1.8 You shall give reasonable notice to Krspace and complete all procedures and formalities required before you hold any event at the office space;
 
-        
-        <br/>6.1.13贵方应负责确保贵方会员遵守所有用房规则。
-        <br/>6.1.13 You are responsible for ensuring your Members comply with all House Rules.
+      <br/>6.1.9贵方应对贵方办公场地正常磨损以外的损害负责；
+        <br/>6.1.9 you will be responsible for any damage to your Office Space except for normal wear and tear;
 
 
-        
-        <br/>6.2会员不得：
-        <br/>6.2 No Member will:
+      <br/>6.1.10未事先经 KrSpace 书面批准，贵方不得对办公场地作任何结构或非结构性改造或在办公场地安装墙壁附着物、家具或天线。若贵方违反此条，须在我方书面通知的期限内改正并恢复原状，否则 KrSpace 有权终止本协议，并没收保证金，并有权进一步追索我方的损失。
+
+      <br/>6.1.10 you shall not make any structural or nonstructural alterations or installations of wall attachments, furniture or antennae in the Office Space without prior written approval by us. If you violate this clause and rectify and restore the
+      Office space to its original state within the specified period under our written notice, we shall terminate this Agreement and forfeit the deposit, and shall have the right claim for the loss incurred.
+
+
+
+      <br/>6.1.11贵方与贵方会员的计算机、平板电脑、移动设备和其他电子设备应：（i）更新到最新版本；及（ii）不含有任何恶意软件、病毒、间谍软件、蠕虫、木马或旨在执行恶意、敌意和/或入侵性操作的任何程序。 KrSpace 有权从 KrSpace 网络中移除对 KrSpace 网络或用户造成威胁的任何设备，直至威胁被去除为止；
+      <br/>6.1.11 you and your Members’ computers, tablets, mobile devices and other electronic equipment shall be (i) updated to the latest version (ii) exlusive of any malware, viruses, spyware, worms, Trojans, or anything that is designed to perform malicious, hostile and/or intrusive operations. We reserve the right to remove any device from our networks that poses a threat to our networks or users until the threat is relieved; and
+
+      <br/>6.1.12贵方同意 KrSpace 非排他并不可转让地：a.在 KrSpace 官网面向公众的“会员”展示栏、视频和其他宣传材料中；b.办公大楼产权方、物业管理方要求进行信息披露等情形使用贵方名称和/或标识，以标注贵方的 KrSpace 会员身份的行为。贵方保证贵方的标识不侵犯任何第三方的权利且贵方完全有义务提供该等同意（如需）。
+      <br/>6.1.12 you agree to our non-exclusive, non-transferable use of your  name and/or logo in connection with （a）identifying you as a Member of Kr Space, alongside those of other Members, on a the column of “Membership” display on the official website of KrSpace, as well as in video and other promotion materials；（b）to disclose your information required by the Property Owner or the Property manage company.  You shall make sure that your logo does not infringe upon the rights of any third party and that you have the obligation to provide this consent (if necessary).
+
+
+      <br/>6.1.13贵方应负责确保贵方会员遵守所有用房规则。
+        <br/>6.1.13 You are responsible for making sure your Members to comply with all  Rules of using the office space.
+
+
+
+      <br/>6.2会员不得：
+        <br/>6.2Members shall not:
 
         
         <br/>6.2.1进行任何据合理预期可能对&nbsp;KrSpace、任何其他会员公司、KrSpace&nbsp;或任何其他会员公司的员工、访客或财产（包括但不限于办公场地或场所）产生破坏性或危险性的活动或导致允许这样的情况发生；
-        <br/>6.2.1 perform any activity or cause of permit anything that is reasonably likely to be disruptive or dangerous to us or any other Member Companies, or our or their employees, guests or property, including without limitation the Office Space or the Premises;
-
-        
-        <br/>6.2.2使用服务、场地或办公场所或在社区进行或从事任何非法或冒犯性活动或以类似方式向社区做出该等表现；
-        <br/>6.2.2 use the Services, the Premises or the Office Space to conduct or pursue any illegal or offensive activities or comport themselves to the community in a similar manner;
-
-        
-        <br/>6.2.3亲自或通过&nbsp;KrSpace&nbsp;会员网络向&nbsp;KrSpace&nbsp;社区提供虚假身份信息；
-        <br/>6.2.3 misrepresent himself or herself to the Kr Space community, either in person or on the Kr Space Member Network;
-
-        
-        <br/>6.2.4提取、复制或使用其他会员公司或其会员或访客的任何信息或知识产权，包括但不限于任何保密或专有信息、姓名、肖像、声音、商业名称、商标、服务标志、标识、商业外观、其他标识符号、其他知识产权或其修改或变更版本。本协议终止后，本条规定继续有效；
-        <br/>6.2.4 take, copy or use any information or intellectual property belonging to other Member Companies or their Members or guests, including without limitation any confidential or proprietary information, personal names, likenesses, voices, business names, trademarks, service marks, logos, trade dress, other identifiers or other intellectual property, or modified or altered versions of the same, and this provision will survive termination of this Agreement;
-
-        <br/>6.2.5未经&nbsp;KrSpace&nbsp;事先同意，为任何目的提取、复制或使用“KrSpace”或&nbsp;KrSpace&nbsp;任何其他商业名称、商标、服务标志、标识、商业外观、其他标识符号、其他知识产权或其修改或变更版本，或为任何目的拍摄、复制或使用场所任何部分的任何照片或图片。本协议终止后，本条规定继续有效；
-        <br/>6.2.5 take, copy or use for any purpose the name “Kr Space” or any of our other business names, trademarks, service marks, logos, trade dress, other identifiers or other intellectual property or modified or altered versions of the same, or take, copy or use for any purpose any pictures or illustrations of any portion of the Premises, without our prior consent, and this provision will survive termination of this Agreement;
+        <br/>6.2.1 carry out or permit or suffer to be done any act that is reasonably likely to be disruptive or dangerous to us or any other Member Companies, or our or their employees, guests or property, including but not limited to the Office Space;
 
 
+      <br/>6.2.2使用服务、场地或办公场所或在社区进行或从事任何非法或冒犯性活动；
+      <br/>6.2.2 use the Services, or the Office Space to conduct or pursue any illegal or offensive activities ;
 
-        <br/>6.2.6将办公场地用作“零售”、“医疗”“教育”“培训”或其他公众频繁造访的用途；
-        <br/>6.2.6 use the Office Space in a “retail,” “medical,” “education,” “training” or other nature involving frequent visits by members of the public;
 
-        
-        <br/>6.2.7复制办公场地或场所的任何钥匙、门卡或其他门禁设备，或将任何钥匙或门卡出借、分享或转让给任何第三方，除非经&nbsp;KrSpace&nbsp;事先授权；
+      <br/>6.2.3提供虚假身份信息；
+        <br/>6.2.3 provide the false ID information;
+
+      <br/>6.2.4提取、复制或使用其他会员公司或其会员或访客的任何信息或知识产权，包括但不限于任何保密或专有信息、姓名、肖像、声音、商业名称、商标、服务标志、标识、商业外观、其他标识符号、其他知识产权或其修改或变更版本。本协议终止后，本条规定继续有效；
+        <br/>6.2.4 take, copy or use any information or intellectual property belonging to other Member Companies or their Members or guests, including without limitation any confidential or proprietary information, personal names, likenesses, voices, business names, trademarks, service marks, logos, trade dress, other identifiers or other intellectual property, or modified or altered versions of the same, and this provision shall be valid after termination of this Agreement;
+
+      <br/>6.2.5未经 KrSpace 事先同意，为任何目的提取、复制或使用“KrSpace”或 KrSpace 任何其他商业名称、商标、服务标志、标识、商业外观、其他标识符号、其他知识产权或其修改或变更版本，或为任何目的拍摄、复制或使用场所任何部分的任何照片或图片。本协议终止后，本条规定继续有效；
+      <br/>6.2.5 take, copy or use for any purpose the name “Kr Space” or any of our other business names, trademarks, service marks, logos, trade dress, other identifiers or other intellectual property or modified or altered versions of the same, or take, copy or use for any purpose any pictures or illustrations of any portion of the Premises, without our prior consent, and this provision shall be valid after termination of this Agreement;
+
+
+
+      <br/>6.2.6将办公场地用作“零售”、“医疗”“教育”“培训”或其他公众频繁造访的用途；
+      <br/>6.2.6 use the Office Space for the purpose of “retail,” “medical,” “education,” “training” or frequent visits by members of the public;
+
+
+      <br/>6.2.7复制办公场地或场所的任何钥匙、门卡或其他门禁设备，或将任何钥匙或门卡出借、分享或转让给任何第三方，除非经&nbsp;KrSpace&nbsp;事先授权；
         <br/>
         
         <br/>6.2.7在办公场地或场所任何区域内安装任何锁具，除非经&nbsp;KrSpace&nbsp;事先授权；
-        <br/>6.2.7 make any copies of any keys, keycards or other means of entry to the Office Space or the Premises or lend, share or transfer any keys or keycards to any third party, unless authorised by us in advance;
+        <br/>6.2.7 make any copies of any keys, keycards or other means of entry to the Office Space or the Premises or lend, share or transfer any keys or keycards to any third party, unless being authorised by us in advance;
 
-        
-        <br/>6.2.8在访客未作登记且未完成&nbsp;KrSpace&nbsp;政策要求的任何其他手续的情况下，允许访客进入大楼。
-        <br/>6.2.8 install any locks to access the Office Space or anywhere within the Premises, unless authorised by us in advance;
 
-        
-        <br/>6.2.9携带任何武器或任何其他攻击性、危险、易燃或爆炸性材料至办公场地或场所。
-        <br/>6.2.9 allow any guest(s) to enter the building without registering such guest(s) and performing any additional required steps according to our policies; or
+      <br/>6.2.8在访客未作登记且未完成&nbsp;KrSpace&nbsp;政策要求的任何其他手续的情况下，允许访客进入大楼。
+        <br/>6.2.8 install any locks to access the Office Space or anywhere, unless being authorised by us in advance;
 
-        
-        <div class="tow-hander">
+
+      <br/>6.2.9携带任何武器或任何其他攻击性、危险、易燃或爆炸性材料至办公场地或场所。
+        <br/>6.2.9 allow any guest(s) to enter the building without registering such guest(s) and performing any additional required procedures according to our policies; or
+      <br>6.2.10携带任何武器或任何其他攻击性、危险、易燃或爆炸性材料至办公场地。
+      <br>6.2.10bring any weapons of any kind, or any other offensive, dangerous, inflammable or explosive materials into the Office Space.
+
+      <div class="tow-hander">
             7.其他约定
             <div>
                     7. Additional Agreements
@@ -777,22 +778,22 @@ ${template-hander.html}
         
 
         <br/>7.2责任限制。<span style="text-decoration:underline;">贵司在&nbsp;KrSpace&nbsp;发生的非因&nbsp;KrSpace&nbsp;原因导致的任何及他方的财物纠纷、人身损害、工伤事故等，均由贵司自行处理解决，KrSpace&nbsp;不对此承担任何责任。贵司在&nbsp;KrSpace&nbsp;所有财物自行保管，发生物品被盗、丢失等一切责任由贵司自行承担。KrSpace&nbsp;可提供摄像查看等配合调查。</span>
-        <br/>7.2  Limitation of liability. <span style="text-decoration:underline;">Any property dispute, personal injury, work injury and so on which is caused by the krspace of your company in the Krspace will be dealt with by your own company, and the krspace shall not bear any responsibility for it. You are responsible for all the belongings of your company in Krspace, the theft and loss of the goods. Krspace can provide camera viewing and other matching investigations.</span>
+        <br/>7.2  Limitation of liability. Any property dispute, personal injury, work injury and so on which is caused by the krspace of your company in the Krspace will be dealt with by your own company, and the krspace shall not bear any responsibility for it. You are responsible for all the belongings of your company in Krspace, the theft and loss of the goods. Krspace can provide camera viewing and assist your investigations.
 
-        
-        <br/>7.3赔偿。对于因贵方或贵方会员、贵方或贵方会员的访客受邀者、或贵方或上述各方的作为或不作为违反本协议规定而引起的任何及所有索赔（包括第三方索赔）、责任与费用（包括合理律师费），贵方应向&nbsp;KrSpace&nbsp;方作出赔偿。贵方或贵方会员、贵方或贵方会员的访客邀请任何人进入场所的任何行为以及由此造成的任何损害，概由贵方负责。未经&nbsp;KrSpace&nbsp;书面同意，贵方不得进行需要&nbsp;KrSpace&nbsp;作出任何实质不利行为或准许、或向任一&nbsp;KrSpace&nbsp;方强加任何义务的偿付行为。对于未经某&nbsp;KrSpace&nbsp;方事先书面同意作出的任何偿付行为，该&nbsp;KrSpace&nbsp;方不承担任何责任。
-        <br/>7.3 Indemnification. You will indemnify the Kr Space Parties from and against any and all claims, including third party claims, liabilities, and expenses including reasonable attorneys’ fees, resulting from any breach of this Agreement by you or your Members or your or their guests or invitees or any of your or their actions or omissions. You are responsible for the actions of and all damages caused by all persons that you, your Members or your or their guests invite to enter any of the Premises. You shall not make any settlement that requires a materially adverse act or admission by us or imposes any obligation upon any of the Kr Space Parties without our written consent. None of the Kr Space Parties shall be liable for any settlement made without its prior written consent.
 
-        
+      <br/>7.3赔偿。对于因贵方或贵方会员、贵方或贵方会员的访客受邀者、或贵方或上述各方的作为或不作为违反本协议规定而引起的任何及所有索赔（包括第三方索赔）、责任与费用（包括合理律师费），贵方应向 KrSpace 方作出赔偿。贵方或贵方会员、贵方或贵方会员的访客邀请任何人进入场所的任何行为以及由此造成的任何损害，概由贵方负责。未经 KrSpace 书面同意，贵方不得进行需要 KrSpace 作出任何实质不利行为的和解或准许、或向任一 KrSpace 方强加任何义务的偿付行为或和解。对于未经某 KrSpace 方事先书面同意作出的任何偿付行为或和解，该 KrSpace 方不承担任何责任。
+      <br/>7.3 Indemnification. You will indemnify the Kr Space Parties from and against any and all claims, including third party claims, liabilities, and expenses including reasonable attorneys’ fees, resulting from any breach of this Agreement by you or your Members or your or their guests or invitees or any of your or their actions or omissions. You are responsible for the actions of and all damages caused by all persons that you, your Members or your or their guests invite to enter any of the Premises. You shall not make any settlement that requires a materially adverse act or admission by us or imposes any obligation upon any of the Kr Space Parties without our written consent. None of the Kr Space Parties shall be liable for any settlement made without its prior written consent.
+
+
         <br/>7.4保险。
         <br/>7.4 Insurance.
 
         
         <br/>7.4.1&nbsp;KrSpace&nbsp;提示贵方，贵方应负责在会员期限内以适合贵方业务的形式和金额，持续自费为贵方与贵方会员投保财产险（可选择基本险、综合险、一切险）、雇主责任险，公众责任险。保险范围须涵盖贵方会员或其访客遭受的、以及因未能或被拒绝使用或进入场所全部或其部分空间而可能造成的财产损失、损害或伤害。
-        <br/>7.4.1 KrSpace prompts you that you shall be responsible for the payment of the property insurance (basic, comprehensive and all risks), employer liability and public liability, in the form and amount of your business for the duration of your membership, at your own expense. Insurance Coverage shall cover the suffering of your member or its visitors, and the inability or denial of use or entry into the premises or part of its space may result in loss of property, damage or injury.
+        <br/>7.4.1 KrSpace prompts you that you shall be responsible for the payment of the property insurance (basic, comprehensive and all risks), employer liability and public liability, in the form and amount of your business for the duration of your membership, at your own expense. Insurance Coverage shall cover loss of property, damage or injury  arising from your member or its visitors, and the inability or denial of use or entry into the premises or part of its space.
 
-        
-        <br/>7.4.2&nbsp;KrSpace&nbsp;并不强制要求贵方投保，但如贵方投保的：（ⅰ）贵方应确保所有该等保单中应将贵方使用&nbsp;KrSpace&nbsp;的场地区域作为保险标的；（ⅱ）贵方应确保财产险、公众责任险保单中应将&nbsp;KrSpace&nbsp;作为共同受益人。贵方放弃贵方对&nbsp;KrSpace&nbsp;和场所业主可能享有的代位求偿权；（ⅲ）贵方如投保雇主责任险的，将免除因&nbsp;KrSpace&nbsp;一方过错而产生的侵权责任。
+
+      <br/>7.4.2&nbsp;KrSpace&nbsp;并不强制要求贵方投保，但如贵方投保的：（ⅰ）贵方应确保所有该等保单中应将贵方使用&nbsp;KrSpace&nbsp;的场地区域作为保险标的；（ⅱ）贵方应确保财产险、公众责任险保单中应将&nbsp;KrSpace&nbsp;作为共同受益人。贵方放弃贵方对&nbsp;KrSpace&nbsp;和场所业主可能享有的代位求偿权；（ⅲ）贵方如投保雇主责任险的，将免除因&nbsp;KrSpace&nbsp;一方过错而产生的侵权责任。
         <br/>7.4.2 KrSpace does not compel you to insure however, if you insure: (Ⅰ) You should ensure that all such policies should be subject to your use of the KrSpace area as insurance, (Ⅱ) you should ensure that the krspace as a common beneficiary in property insurance and public liability insurance policies. You give up your right of subrogation to krSpace and premises owners, (Ⅲ) if you insure your employer&prime;s liability insurance, you will be exempted from the tort liability arising from the fault of the KrSpace party.
 
         
@@ -819,7 +820,7 @@ ${template-hander.html}
         <div class="tow-hander">
             8.诉讼和放弃代表诉讼
             <div>
-                    8.Arbitration and Representative Litigation Waiver
+              8.Litigation and Representative Litigation Waiver
             </div>
         </div>
         8.1准据法。本协议与本协议项下拟议交易受中华人民共和国（在本协议中不包括台湾、香港和澳门）法律管辖并据其释义，不考虑其冲突法规定，亦不适用《联合国国际货物买卖合同公约》。
@@ -830,11 +831,12 @@ ${template-hander.html}
         <br/>8.2 Venue. Except that either party may seek interim, conservancy or similar relief from any court of competent jurisdiction, any dispute, controversy or claim arising out of or in relation to this Agreement, or at law, or the breach, termination or invalidity of this Agreement, that cannot be settled amicably by agreement of the parties to this Agreement shall be finally settled by Beijing Chaoyang District People’s Court (“Chaoyang Court”).
 
         
-        <br/>8.3放弃代表诉讼。任何争议解决或诉讼程序均仅以单独案件形式进行。贵方或&nbsp;KrSpace&nbsp;均不得寻求通过代表诉讼方式，或通过由其担任或拟担任代表提起任何其他程序的方式，审理双方争议。未经程序所有当事方事先书面同意，任何程序不得与其他程序合并处理。贵方与&nbsp;KrSpace&nbsp;进一步同意，若贵我双方为相关程序当事人，则双方均不得参与公益诉讼或以代表身份提起的任何索赔，或涉及另一人（包括任何公认的社会机构或组织）诉求的合并索赔。贵方放弃以代表或会员身份参与可能针对&nbsp;KrSpace&nbsp;提起的任何代表诉讼的权利。
-        <br/>8.3 Representative Litigation Waiver. Any proceeding to resolve or litigate any dispute in any forum will be conducted solely on an individual basis. Neither you nor we will seek to have any dispute heard as a representative litigation, or in any other proceeding in which either party acts or proposes to act in a representative capacity. No proceeding will be combined with another without the prior written consent of all parties to all affected proceedings. You and we also agree not to participate in claims brought in a public interest litigation or representative capacity, or any consolidated claims involving another person&prime;s account, including any recognized social institution or organization, if we are a party to the proceeding. YOU ARE GIVING UP YOUR RIGHT TO PARTICIPATE AS A REPRESENTATIVE OR MEMBER ON ANY REPRESENTATIVE LITIGATION CLAIM YOU MAY HAVE AGAINST US.
+        <br/>8.3放弃代表诉讼/团体诉讼。任何争议解决或诉讼程序均仅以单独案件形式进行。贵方或 KrSpace 均不得寻求通过代表诉讼团体诉讼方式，或通过由其担任或拟担任代表提起任何其他程序的方式，审理双方争议。未经程序所有当事方事先书面同意，任何程序不得与其他程序合并处理。贵方与 KrSpace 进一步同意，若贵我双方为相关程序当事人，则双方均不得参与公益诉讼或以代表身份提起的任何索赔，或涉及另一人（包括任何公认的社会机构或组织）诉求的合并索赔。贵方放弃以代表或会员身份参与可能针对 KrSpace 提起的任何代表诉讼/团体诉讼的权利。
+      <br/><p>8.3 Representative/Group Litigation Waiver. Any proceeding to resolve or litigate any dispute in any forum will be conducted solely on an individual basis. Neither you nor we will seek to have any dispute heard as a representative/group litigation, or in any other proceeding in which either party acts or proposes to act in a representative capacity. No proceeding will be combined with another without the prior written consent of all parties to all affected proceedings. You and we also agree not to participate in claims brought in a public interest litigation or representative capacity, or any consolidated claims involving another person&prime;s account, including any recognized social institution or organization, if we are a party to the proceeding. YOU ARE GIVING UP YOUR RIGHT TO PARTICIPATE AS A REPRESENTATIVE OR MEMBER ON ANY REPRESENTATIVE/GROUP LITIGATION CLAIM YOU MAY HAVE AGAINST US.</p>
 
-        
-        <div class="tow-hander">
+
+
+      <div class="tow-hander">
             9.附则
             <div>9.Miscellaneous
                 </div>
@@ -844,18 +846,18 @@ ${template-hander.html}
 
         
         <br/>9.2协议修订。会员服务费与超额费的修订适用第4.2条规定。KrSpace&nbsp;将不时修订本协议其他条款，并使用包括但不限于书面、APP推送、本协议指定的电子邮箱等形式通知贵方。自&nbsp;KrSpace&nbsp;发送该等修订内容的通知之日起满7个日历日后，视为贵方已接受协议新条款规定。超出上述时间继续使用办公场地或服务的，视为接受新条款规定。
-        <br/>9.2 Updates to the Agreement. Membership Fee and overage fees, will be governed by Section 4.2. With respect to other sections of this Agreement, we may from time to time update this Agreement and will provide notice to you of these updates. You will be deemed to have accepted the new terms of the Agreement following the completion of seven (7) full calendar months after the date of notice of the update(s). Continued use of the Office Space or Services beyond this time will constitute acceptance of the new terms.
+        <br/>9.2 Updates to the Agreement. Membership Fee and additional fees, will be governed by Section 4.2. we may from time to time update this Agreement and will provide notice to you of these updates. You will be deemed to have accepted the new terms of the Agreement following the completion of seven (7) full calendar days  after the date of notice of the update(s). Continuous use of the Office Space or Services beyond the above 7 days will constitute acceptance of the new terms.
 
-        
-        <br/>9.3弃权。任何一方的任何作为或不作为不得视为该方放弃其于本协议项下的权利或救济，弃权一方以书面形式签字确认弃权者除外。
+
+      <br/>9.3弃权。任何一方的任何作为或不作为不得视为该方放弃其于本协议项下的权利或救济，弃权一方以书面形式签字确认弃权者除外。
         <br/>9.3 Waiver. Neither party shall be deemed by any act or omission to have waived any of its rights or remedies hereunder unless such waiver is in writing and signed by the waiving party.
 
         
         <br/>9.4从属关系。本协议从属于并受制于&nbsp;KrSpace&nbsp;就场所与业主签署的租约、任何补充文件以及对&nbsp;KrSpace&nbsp;与业主之间的租约进行约束与规范的任何其他协议。但前述规定并不默示存在任何涉及不动产权益的转租或其他类似关系。
-        <br/>9.4 Subordination. This Agreement is subject and subordinate to our lease with our landlord of the Premises and to any supplemental documentation and to any other agreements to which our lease with such landlord are subject to or subordinate. However, the foregoing does not imply any sublease or other similar relationship involving an interest in real property.
+        <br/>9.4 Subordination. This Agreement is subject and subordinate to our lease with our landlord of the Premises and to any supplemental documentation and to any other agreements to which our lease with such landlord are subject to or subordinate. However, this clause  does not imply any sublease or other similar relationship involving an interest in real property.
 
-        
-        <br/>9.5特别事件。因超出&nbsp;KrSpace&nbsp;合理控制范围的任何事由或情况而导致&nbsp;KrSpace&nbsp;延迟或未履行本协议的情形下，包括但不限于：(i)场所施工发生延迟或变更，或&nbsp;KrSpace&nbsp;获得任何场所内任何空间的能力受到影响；及（ii）因属于&nbsp;KrSpace&nbsp;相关场所业主控制范围之内的情况而导致延迟或未履行，KrSpace&nbsp;不承担任何责任，且不得视为&nbsp;KrSpace&nbsp;未履行或违反本协议。
+
+      <br/>9.5特别事件。因超出&nbsp;KrSpace&nbsp;合理控制范围的任何事由或情况而导致&nbsp;KrSpace&nbsp;延迟或未履行本协议的情形下，包括但不限于：(i)场所施工发生延迟或变更，或&nbsp;KrSpace&nbsp;获得任何场所内任何空间的能力受到影响；及（ii）因属于&nbsp;KrSpace&nbsp;相关场所业主控制范围之内的情况而导致延迟或未履行，KrSpace&nbsp;不承担任何责任，且不得视为&nbsp;KrSpace&nbsp;未履行或违反本协议。
         <br/>9.5 Extraordinary Events. Kr Space will not be liable for, and will not be considered in default or breach of this Agreement on account of, any delay or failure to perform as required by this Agreement as a result of any causes or conditions that are beyond Kr Space’s reasonable control, including without limitation (i) any delays or changes in construction of, or Kr Space’s ability to procure any space in any Premises, and (ii) any delays or failure to perform caused by conditions under the control of our landlord at the applicable Premises.
 
         
@@ -864,10 +866,10 @@ ${template-hander.html}
 
         
         <br/>9.7继续有效。本协议终止或到期后，第1条、第2.3条、第4条（仍有未付款项时）、第5.3条、第5.6条、第5.7条、第5.8条、第6.2条、，第7.1条至7.3条、第8条、第9条以及据合理预期应在本协议终止或到期后继续有效的所有其他条款，应继续有效。
-        <br/>9.7 Survival. Sections 1, 2.3, 4 (to the extent any payments remain outstanding), 5.3, 5.6, 5.7, 5.8,6.2, 7.1 through 7.3,  8, and 9 and all other provisions of this Agreement reasonably expected to survive the termination or expiration of this Agreement will do so.
+      <br/>9.7 Effectiveness. Sections 1, 2.3, 4 (if there are any outstanding payments), 5.3, 5.6, 5.7, 5.8,6.2, 7.1 through 7.3,  8, and 9 and all other provisions of this Agreement reasonably expected to be valid after the termination or expiration of this Agreement will do so.
 
-        
-        <br/>9.8通知。本协议项下任何与所有通知均应可通过书面函件、本协议指定的电子邮件、APP推送等形式发送；如以书面形式发出的，自发出48小时后视为送达；如以电子邮件、APP推送等形式发出的，发出即视为已送达。KrSpace&nbsp;可酌情合理决定向管理员发送通知。与本协议或贵我双方之间业务关系、与实体办公场地、场所、会员、其他会员公司或场所其他事宜相关的通知应由管理员发送。若&nbsp;KrSpace&nbsp;收到的通知由贵方多个管理员不同时段发出的通知内容相互矛盾的，以&nbsp;KrSpace&nbsp;收到首次通知起始的24小时内最后的通知内容为准；KrSpace&nbsp;酌情合理另行决定者除外。
+
+      <br/>9.8通知。本协议项下任何与所有通知均应可通过书面函件、本协议指定的电子邮件、APP推送等形式发送；如以书面形式发出的，自发出48小时后视为送达；如以电子邮件、APP推送等形式发出的，发出即视为已送达。KrSpace&nbsp;可酌情合理决定向管理员发送通知。与本协议或贵我双方之间业务关系、与实体办公场地、场所、会员、其他会员公司或场所其他事宜相关的通知应由管理员发送。若&nbsp;KrSpace&nbsp;收到的通知由贵方多个管理员不同时段发出的通知内容相互矛盾的，以&nbsp;KrSpace&nbsp;收到首次通知起始的24小时内最后的通知内容为准；KrSpace&nbsp;酌情合理另行决定者除外。
         <br/>9.8 Notices. Any and all notices under this Agreement will be given via email, and will be effective on the first business day after being sent. All notices will be sent via email to the email addresses specified on the cover sheet, except as otherwise provided in this Agreement. KrSpace may send notices to either (or both) the Administrator or the Authorised Signatory, as Kr Space determines in its reasonable discretion. Notices related to the physical Office Space, Premises, Members, other Member Companies or other issues in the Premises should be sent by the Administrator. Notices related to this Agreement or the business relationship between you and Kr Space should be sent by your Authorised Signatory. In the event that we receive multiple notices from different individuals within your company containing inconsistent instructions, the Authorised Signatory’s notice will control unless we decide otherwise in our reasonable discretion.
 
         
@@ -892,7 +894,7 @@ ${template-hander.html}
 
         
         <br/>9.14完整协议。本协议（包括会籍详情）构成双方就本协议标题事项达成的完整协议。除双方签署书面文件或以其他方式许可外，不得以任何方式对本协议作出修订。双方就本协议所载事项达成的所有在先协议与谅解已并入本协议。
-        <br/>9.14 Entire Agreement. This Agreement, including the Membership Details Form, constitutes the entire agreement between the parties relating to the subject matter hereof and shall not be changed in any manner except by a writing executed by both parties or as otherwise permitted herein. All prior agreements and understandings between the parties regarding the matters described herein have merged into this Agreement.
+        <br/>9.14 Integral Agreement. This Agreement, including the Membership Details Form, constitutes the entire agreement between the parties relating to the subject matter hereof and shall not be changed in any manner except by a writing executed by both parties or as otherwise permitted herein. All prior agreements and understandings between the parties regarding the matters described herein have merged into this Agreement.
 
         
         <br/>9.15协议份数。本协议（包括会籍详情/条款和条件）一式两份，双方各持一份，具有同等法律效力。
@@ -900,21 +902,22 @@ ${template-hander.html}
 
         
         <br/>9.16协议生效。
-        <br/>9.16 the effect of the Agreement.
+        <br/>9.16 the effectiveness of the Agreement.
 
         
         <br/>9.16.1本协议（包括第一部分会籍详情及第二部分条款和条件）经双方签字及盖章后生效。
-        <br/>9.16.1 this agreement (including the details of the first chapter and Part II terms and conditions) shall come into force upon signature and seal by both parties.
+        <br/>9.16.1 this agreement (including the details of the first chapter and Part II terms and conditions) shall take into effect upon signature and seal by both parties.
 
-        
-        <br/>9.16.2会员或会员公司知悉并同意，将在签署本协议的5个工作日内向&nbsp;KrSpace&nbsp;提供如下证明材料：（1）会员公司需提供两（2）份公司营业执照复印件并加盖公司公章；（2）个人需提供两（2）份有效身份证或护照复印件；此外若该个人为公司雇员或者仅为公司工作或服务，其提供供的身份证/护照复印件还应加盖公司公章，而不论该个人是否与公司存在正式的劳动关系。
+
+      <br/>9.16.2会员或会员公司知悉并同意，将在签署本协议的5个工作日内向&nbsp;KrSpace&nbsp;提供如下证明材料：（1）会员公司需提供两（2）份公司营业执照复印件并加盖公司公章；（2）个人需提供两（2）份有效身份证或护照复印件；此外若该个人为公司雇员或者仅为公司工作或服务，其提供供的身份证/护照复印件还应加盖公司公章，而不论该个人是否与公司存在正式的劳动关系。
         <br/>
-        
-        <br/>9.16.2签署本协议即表明贵方向&nbsp;KrSpace&nbsp;声明，协议签署人/公司拥有适当权限代表前文所列公司签署本协议并代表该公司产生本协议项下义务。
-        <br/>9.16.2 member or member company knows and agrees, the following certification materials will be provided to krspace within 5 working days of the signing of this Agreement: (1) The member Company shall provide two (2) copies of the company&prime;s business license and affix the company&prime;s official seal; (2) an individual must provide two (2) valid ID card or passport copy In addition, if the individual is a company employee or only works or services for the company, the photocopy of the ID/passport provided by the person shall be stamped with the company&prime;s official seal, whether or not the person has a formal labor relationship with the company.
-        <br/>（以下无正文）
+        <br/><p>9.16.2 member or member company knows and agrees, the following certification materials will be provided to krspace within 5 working days of the signing of this Agreement: (1) The member Company shall provide two (2) copies of the company&prime;s business license  affixed with the company&prime;s official seal; (2) an individual must provide two (2) valid ID card or passport copy. In addition, if the individual is a company employee or only works or provide services for the company, the photocopy of the ID/passport provided by the person shall be stamped with the company&prime;s official seal, whether or not the person has a formal labor relationship with the company.</p>
+      <br>9.16.3签署本协议即表明贵方向 KrSpace 声明，协议签署人/公司拥有适当权限代表前文所列公司签署本协议并代表该公司产生本协议项下义务。
+      <br>9.16.3 the signing of this agreement indicates your statement to krspace that the undersigned/the company has the appropriate authority to sign this agreement on behalf of the company listed above and to produce the obligations under this Agreement on behalf of the company.
+      <br>9.16.4 本协议以中英文书就，若两种版本之间出现分歧，则以中文版本为准。
+      <br>9.16.4 This agreement is written in  Chinese and English , if there are differences between the two versions, the Chinese version shall prevail.
+      <br/>（以下无正文）
         <br/>(no text below)
-        
     </div>#{pagination}
     ${template-hander.html}（签署页）
     <div class="all-end">
