@@ -26,9 +26,9 @@ function render(componentsFils,componentsName,){
     var data = fs.readdirSync(templatePagePath, 'utf8');
 
     data.forEach(function(item, index) {  
-        var files =  fs.readFileSync(templatePagePath+'/'+item,'utf8')
+        const files =  fs.readFileSync(templatePagePath+'/'+item,'utf8')
 
-        var templateFiles = files.replace(templateReg,componentsFils)
+        let templateFiles = files.replace(templateReg,componentsFils)
         templateFiles = minify(templateFiles,{removeComments: true,collapseWhitespace: true,minifyCSS:true});   
         
         fs.writeFileSync(pagePath+'/'+item, templateFiles, 'utf8');  
