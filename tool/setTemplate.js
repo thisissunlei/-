@@ -3,6 +3,7 @@ var express = require('express');
 var app = express(); 
 var fs = require('fs')  
 var path=require('path');  
+var minify = require('html-minifier').minify;
 
 var componentsPath = path.resolve(__dirname,'../template/components');  //模板路径组件路径
 var templatePagePath = path.resolve(__dirname,'../template/templatePage');  
@@ -28,7 +29,7 @@ function render(componentsFils,componentsName,){
         var files =  fs.readFileSync(templatePagePath+'/'+item,'utf8')
 
         var templateFiles = files.replace(templateReg,componentsFils)
-            
+        templateFiles = minify(templateFiles,{removeComments: true,collapseWhitespace: true,minifyCSS:true});   
         
         fs.writeFileSync(pagePath+'/'+item, templateFiles, 'utf8');  
         
