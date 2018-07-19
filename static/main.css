@@ -301,3 +301,19 @@ table.detail-table .detail-content-tr td:first-child{
 .hasUnderline {
     text-decoration: underline;
 }
+
+p, span, td, div {
+    margin: 0;
+    padding: 0;
+    font-family: 宋体;
+}
+
+body {
+    margin: 0 auto;
+}
+
+p, span, td, div {
+    line-height: 150%;
+    letter-sapcing: 0;
+    font-size: 13px;
+}
