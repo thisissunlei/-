@@ -319,3 +319,18 @@ p, span, td, div {
 .fontBold {
     font-weight: bold;
 }
+
+.total div.wrapDiv {
+    width: 25%;
+}
+
+.total div.wrapDiv div {
+    display: block;
+    width: auto;
+    margin-right: 30px;
+}
+
+.relativeTop {
+    position: relative;
+    top: -12px;
+}
