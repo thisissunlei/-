@@ -1,14 +1,14 @@
 var mammoth = require("mammoth");
 var fs = require('fs');
 var path = require('path');
-
+const version = '2018-10';
 var filePath = path.resolve('../doc');
-var files = fs.readdirSync('./doc');
+var files = fs.readdirSync('./doc/'+version);
 
 // console.log('file文件: ', files);
 function writeFileFun(i, result) {
   return new Promise((resolve, reject) => {
-    fs.writeFile('convertTemplate/' + i + '.html', result.value, 'utf8', function (err) {
+    fs.writeFile('convertTemplate/'+version+'/' + i + '.html', result.value, 'utf8', function (err) {
       if (err) return reject(err);
       return resolve(result.messages);
     });
@@ -16,45 +16,24 @@ function writeFileFun(i, result) {
 }
 
 const promiseList = files.map(i => new Promise((resolve, reject) => {
-  return resolve(mammoth.convertToHtml({path: `doc/${i}`}));
+  console.log(i,"pppp")
+  return resolve(mammoth.convertToHtml({path: `doc/${version+'/'+i}`}));
 }).then(result => {
+  // console.log(result,"oooo")
+  result.value = getAgreement(result.value);
   return writeFileFun(i, result)
 }));
 
-// const promiseList = files.map((i, index) => new Promise((resolve, reject) => {
-//   mammoth.convertToHtml({path: `doc/${i}`})
-//   // .then(function (result) {
-//   // const html = result.value; // The generated HTML
-//   // const messages = result.messages; // Any messages, such as warnings during conversion
-//   // console.log(messages);
-//   // resolve(result);
-//   // })
-//       .then(result => {
-//         fs.writeFile('convertTemplate/' + i + '.html', result.value, 'utf8', function (err) {
-//           if (err) return reject(err);
-//           resolve(result.messages);
-//         });
-//       })
-//       .done();
-// }));
 Promise.all(promiseList).then((result) => {
-  console.log(result)
-  // console.log('=======');
-  // result.forEach((item, index) => {
-  //   console.log(index);
-  //   fs.writeFile('convertTemplate/'+index + '.html', item, 'utf8', function (err) {
-  //     if (err) return console.log(err);
-  //   });
-  // })
+ 
 }).catch((error) => {
   console.log('error: ' + error)
 })
-// mammoth.convertToHtml({path: "doc/5变更协议.docx"})
-//     .then(function (result) {
-//       var html = result.value; // The generated HTML
-//       var messages = result.messages; // Any messages, such as warnings during conversion
-//       console.log(html);
-//       console.log('=======');
-//       console.log(messages);
-//     })
-//     .done();
+
+function getAgreement(file){
+  
+  if(file.indexOf('<p><strong>第二部分 条款和条件</strong></p>')!=-1){
+    file = file.split('<p><strong>第二部分 条款和条件</strong></p>')[1]
+  }
+  return file;
+}

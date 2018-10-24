@@ -133,11 +133,11 @@ body {
 .tabel-hander {
   
    position: relative;
-  font-weight:blod;
+   font-weight:blod;
    padding-left: 0px;
    font-size:18px;
    page-break-inside: avoid;
-   margin-top: 15px;
+   margin-top: 20px;
    margin-bottom: 15px;
    color:#000;
    font-weight:blod;
