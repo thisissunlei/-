@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev:member": "NODE_ENV=member node server/index.js",
     "dev:add": "NODE_ENV=add node server/index.js",
     "dev:renew": "NODE_ENV=renew node server/index.js",

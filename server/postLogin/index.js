@@ -9,12 +9,13 @@ const request = require('request');
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
+const config = require('../config');
 
 const getData = require('./getData');
 
 
 //对应的测试或者开发环境
-const environment = 'optest04.krspace.cn';
+const environment = config.environment;
 /**
  * op登录接口
  * @param loginValicode 验证码
@@ -45,7 +46,7 @@ const downPdfUrl = `http://${environment}/api/krspace-erp-web/wf/station/contrac
 
 
 let cookie = '';
-let paramsDetail = getData();
+let paramsDetail = config.paramsDetail;
 const htmlTemlateUrl = path.resolve(__dirname, '../../client/template/page/' + paramsDetail.fileName);
 
 axios.defaults.withCredentials = true
@@ -61,8 +62,6 @@ function login(loginValicode, loginName, loginPwd) {
   axios(options).then(res => {
     cookie = res.headers['set-cookie'][0];
     setTemplate()
-
-
   })
 
 }

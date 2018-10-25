@@ -22,3 +22,40 @@
 3. renderMainTabel 生成对应的 组件文件
 4. setTemplate 是将 client/template 下面的 component 文件夹和 template 文件夹下的内容合成放模板文件放在 client/template/page 里
 
+
+### 启动命令
+1. 将 word 文档转换成 html
+
+```
+npm run docToHtml
+```
+2. 项目开发
+```
+npm run dev:member //开发会员合同(入住)模板
+npm run dev:add    //开发增租模板
+npm run dev:renew  //开发续租模板
+npm run dev:modify //开发换租模板
+```
+### 每次开发需要修改的参数
+(一下参数值为产考值)
+>本项目的需配置产生都在 server/config 定义
+
+**postLoginParam.js** 
+>node 爬接口所用的参数配置
+```
+environment:'optest04.krspace.cn' //所用环境域名
+templateId: 26                    //模板id
+formId: 3                         //模板对应表的id
+orderId: 13100                    //订单id
+languageType: 'CHINESE'           //语言类型
+requestId: 13106                  //合同id
+contractType: 'NOSEAL'            //是否带章
+fileName: 'member.html'           //模板文件的名称
+name: '十月入住新模板'              //模板名称
+```
+**converWordToHtmlParam.js** 
+>word 转换成 html 时的参数
+```
+version:'2018-10'   //本次改版的版本号
+```
+

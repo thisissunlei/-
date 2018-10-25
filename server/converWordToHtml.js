@@ -5,8 +5,8 @@
  */
 const mammoth = require("mammoth");
 const fs = require('fs');
-const path = require('path');
-const version = '2018-10';
+const config = require('./config');
+const version = config.version;
 const files = fs.readdirSync('./docToHtml/doc/'+version);
 function writeFileFun(i, result) {
   return new Promise((resolve, reject) => {
