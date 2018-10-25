@@ -1,25 +1,24 @@
 
-var express = require('express');
-var app = express();
-var fs = require('fs')
-var path = require('path');
-var setTemplate = require('./setTemplate')
-var renderMainTabel = require('./renderMainTabel');
-var postLogin = require('./postLogin');
+const express = require('express');
+const app = express();
+const fs = require('fs')
+const path = require('path');
+const setTemplate = require('./setTemplate')
+const renderMainTabel = require('./renderMainTabel');
+const postLogin = require('./postLogin');
 
-var chokidar = require('chokidar');
-var minify = require('html-minifier').minify;
+const chokidar = require('chokidar');
+const minify = require('html-minifier').minify;
 
-var templatePath = path.join(__dirname, '../template/page');
-var mainPath = path.join(__dirname,'../main'); //主js文件
-var pubilcPath = path.join(__dirname, '../public'); //预览文件生成路径
-var staticPath = path.join(__dirname,'../static'); // 插件部分内容
-console.log(staticPath,"ppppp")
-const templateComponents = chokidar.watch(path.join(__dirname, '/template/components')); //组件文件加修改监听
-const templatePage = chokidar.watch(path.join(__dirname, '/template/templatePage')); //html模板文件加添加监听
+const templatePath = path.join(__dirname, '../client/template/page');
+const mainPath = path.join(__dirname,'../client/main'); //主js文件
+const pubilcPath = path.join(__dirname, '../dist'); //预览文件生成路径
+const staticPath = path.join(__dirname,'../client/static'); // 插件部分内容
+const templateComponents = chokidar.watch(path.join(__dirname, '../client/template/components')); //组件文件加修改监听
+const templatePage = chokidar.watch(path.join(__dirname, '../client/template/templatePage')); //html模板文件加添加监听
 
-const mainFile = chokidar.watch(path.join(__dirname, '../main')); //主js文件添加监听
-const staticFile = chokidar.watch(path.join(__dirname, '../static')); //公共部分添加监听
+const mainFile = chokidar.watch(path.join(__dirname, '../client/main')); //主js文件添加监听
+const staticFile = chokidar.watch(path.join(__dirname, '../client/static')); //公共部分添加监听
 
 
 
@@ -54,17 +53,17 @@ function getStaticContent(mainContent, fileName) {
   //读取static文件夹
   fs.readdir(staticPath, 'utf8', function (err, data) {
 
-    var result = '';
+    let result = '';
     data.forEach(function (item, index) {
       //同步读取里每个文件的内容
       result = fs.readFileSync(staticPath + '/' + item, {
         encoding: 'utf-8'
       })
       //分别替换 css jq jsCode allData 部分内容
-      var templateReg = new RegExp('\\$\\{' + item + '\\}', 'ig');
+      let templateReg = new RegExp('\\$\\{' + item + '\\}', 'ig');
 
-      var files = item.split('.');
-      var suffix = files[files.length - 1];
+      let files = item.split('.');
+      let suffix = files[files.length - 1];
 
       if (suffix != 'js' && item !== 'jsCode' && item !== 'allData') {
         result = minify(result, { removeComments: true, collapseWhitespace: true, minifyJS: true, minifyCSS: true });
@@ -100,7 +99,7 @@ function getMainHtml() {
 
 //获取生成查看文件
 function render(templateContent, fileName) {
-  var templateReg = new RegExp('\\$\\{template\\}', 'ig');
+  let templateReg = new RegExp('\\$\\{template\\}', 'ig');
   fs.readdir(templatePath, 'utf8', function (err, data) {
     for (let i = 0; i < data.length; i++) {
       const item = data[i];

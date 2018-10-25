@@ -9,6 +9,7 @@ const request = require('request');
 const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
+
 const getData = require('./getData');
 
 
@@ -45,7 +46,7 @@ const downPdfUrl = `http://${environment}/api/krspace-erp-web/wf/station/contrac
 
 let cookie = '';
 let paramsDetail = getData();
-const htmlTemlateUrl = path.resolve(__dirname, '../../template/page/' + paramsDetail.fileName);
+const htmlTemlateUrl = path.resolve(__dirname, '../../client/template/page/' + paramsDetail.fileName);
 
 axios.defaults.withCredentials = true
 //系统登录
@@ -144,8 +145,8 @@ function downPdf() {
       console.error('下载合同出错');
       return;
     }
-    var fileUrl = res.data.data;
-    var filename = 'heTong.pdf';
+    let fileUrl = res.data.data;
+    let filename = 'heTong.pdf';
     downloadFile(fileUrl, filename, function () {
       console.log(filename + '下载完毕');
     });
@@ -156,7 +157,7 @@ function downPdf() {
 function downloadFile(uri, filename, callback) {
   // console.log(uri,"ppppp")
   // return ;
-  var stream = fs.createWriteStream(filename);
+  let stream = fs.createWriteStream(filename);
   request(uri).pipe(stream).on('close', callback);
 }
 

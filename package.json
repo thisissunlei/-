@@ -9,7 +9,7 @@
     "dev:add": "NODE_ENV=add node server/index.js",
     "dev:renew": "NODE_ENV=renew node server/index.js",
     "dev:modify": "NODE_ENV=modify node server/index.js",
-    "convert": "node server/converWordToHtml"
+    "docToHtml": "node server/converWordToHtml"
   },
   "repository": {
     "type": "git",

@@ -3,14 +3,14 @@
  * @desc: world文档转换成html并对文章内容做一定的处理
  * @author: 刘毅豪(liuyihao@krspace.cn) or 王乐平(wangleping@krspace.cn)
  */
-var mammoth = require("mammoth");
-var fs = require('fs');
-var path = require('path');
+const mammoth = require("mammoth");
+const fs = require('fs');
+const path = require('path');
 const version = '2018-10';
-var files = fs.readdirSync('./doc/'+version);
+const files = fs.readdirSync('./docToHtml/doc/'+version);
 function writeFileFun(i, result) {
   return new Promise((resolve, reject) => {
-    fs.writeFile('convertTemplate/'+version+'/' + i + '.html', result.value, 'utf8', function (err) {
+    fs.writeFile('docToHtml/convertTemplate/'+version+'/' + i + '.html', result.value, 'utf8', function (err) {
       if (err) return reject(err);
       return resolve(result.messages);
     });
@@ -18,8 +18,7 @@ function writeFileFun(i, result) {
 }
 
 const promiseList = files.map(i => new Promise((resolve, reject) => {
-  console.log(i,"pppp")
-  return resolve(mammoth.convertToHtml({path: `doc/${version+'/'+i}`}));
+  return resolve(mammoth.convertToHtml({path: `docToHtml/doc/${version+'/'+i}`}));
 }).then(result => {
   // console.log(result,"oooo")
   result.value = getAgreement(result.value);

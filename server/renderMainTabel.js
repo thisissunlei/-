@@ -1,6 +1,6 @@
-var path = require('path');
-var fs = require('fs');
-var componentsPath = path.resolve(__dirname, '../template/components');
+const path = require('path');
+const fs = require('fs');
+const componentsPath = path.resolve(__dirname, '../client/template/components');
 //会员详情
 const memberArr = [
   { label: '会员公司/贵方（法定登记的名称）', value: 'lessee_name' },
@@ -39,7 +39,7 @@ const paymentArr = [
 const supplementArr=[
   {label:'居间方全称',value:''}
 ]
-
+//生成主表方法
 function memberDetailRender(arr, name) {
   let str = '';
   arr.map((item) => {
@@ -56,6 +56,7 @@ function memberDetailRender(arr, name) {
   // return str;
   fs.writeFileSync(componentsPath + '/' + name, str, 'utf8');
 }
+
 module.exports = function () {
   memberDetailRender(memberArr, 'member-detail-tm')
   memberDetailRender(serviceArr, 'service-detail-tm')
