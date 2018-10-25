@@ -1,8 +1,14 @@
 
+const path = require("path")
+/** 
+ * 别名的实现方案 目前没有具体应用
+*/
+require('node-require-alias').setAlias(
+   {"@":path.join(__dirname, "../")} 
+)
 const express = require('express');
 const app = express();
 const fs = require('fs')
-const path = require('path');
 const setTemplate = require('./setTemplate')
 const renderMainTabel = require('./renderMainTabel');
 const postLogin = require('./postLogin');
