@@ -3,23 +3,23 @@ var express = require('express');
 var app = express();
 var fs = require('fs')
 var path = require('path');
-var setTemplate = require('./tool/setTemplate')
-var renderMainTabel = require('./tool/renderMainTabel');
+var setTemplate = require('./setTemplate')
+var renderMainTabel = require('./renderMainTabel');
 var postLogin = require('./postLogin');
 
 var chokidar = require('chokidar');
 var minify = require('html-minifier').minify;
 
-var templatePath = path.resolve(__dirname + '/template/page');
-var mainPath = path.resolve(__dirname + '/main'); //主js文件
-var pubilcPath = path.resolve(__dirname + '/public'); //预览文件生成路径
-var staticPath = path.resolve(__dirname + '/static'); // 插件部分内容
-
+var templatePath = path.join(__dirname, '../template/page');
+var mainPath = path.join(__dirname,'../main'); //主js文件
+var pubilcPath = path.join(__dirname, '../public'); //预览文件生成路径
+var staticPath = path.join(__dirname,'../static'); // 插件部分内容
+console.log(staticPath,"ppppp")
 const templateComponents = chokidar.watch(path.join(__dirname, '/template/components')); //组件文件加修改监听
 const templatePage = chokidar.watch(path.join(__dirname, '/template/templatePage')); //html模板文件加添加监听
 
-const mainFile = chokidar.watch(path.join(__dirname, '/main')); //主js文件添加监听
-const staticFile = chokidar.watch(path.join(__dirname, '/static')); //公共部分添加监听
+const mainFile = chokidar.watch(path.join(__dirname, '../main')); //主js文件添加监听
+const staticFile = chokidar.watch(path.join(__dirname, '../static')); //公共部分添加监听
 
 
 
@@ -82,7 +82,7 @@ function getStaticContent(mainContent, fileName) {
 function getMainHtml() {
   setTemplate()
   postLogin();
-  return;
+ 
   //获取去main文件的所有文件的路径
   fs.readdir(mainPath, 'utf8', function (err, data) {
    

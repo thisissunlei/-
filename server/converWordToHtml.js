@@ -1,11 +1,13 @@
+
+/**
+ * @desc: world文档转换成html并对文章内容做一定的处理
+ * @author: 刘毅豪(liuyihao@krspace.cn) or 王乐平(wangleping@krspace.cn)
+ */
 var mammoth = require("mammoth");
 var fs = require('fs');
 var path = require('path');
 const version = '2018-10';
-var filePath = path.resolve('../doc');
 var files = fs.readdirSync('./doc/'+version);
-
-// console.log('file文件: ', files);
 function writeFileFun(i, result) {
   return new Promise((resolve, reject) => {
     fs.writeFile('convertTemplate/'+version+'/' + i + '.html', result.value, 'utf8', function (err) {

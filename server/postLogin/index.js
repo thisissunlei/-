@@ -1,72 +1,57 @@
+/**
+ * @desc: 合同模板页面自动提交，合同申请，以及合同下载
+ * @author: 刘毅豪(liuyihao@krspace.cn)
+ */
+
+
 const axios = require('axios')
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
-
-const loginurl = `http://optest04.krspace.cn/api/krspace-sso-web/sso/login/validateCodeLogin`
-const setTemplateUrl = `http://optest04.krspace.cn/api/krspace-erp-web/sys/print-template`
-const applyContractUrl = `http://optest04.krspace.cn/api/krspace-op-web/order-seat/contractApply`
-const downPdfUrl = `http://optest04.krspace.cn/api/krspace-erp-web/wf/station/contract/pdf/down`;
 const querystring = require('querystring');
-const type = process.env.NODE_ENV;
-// console.log(process.env.NODE_ENV, "ppppp")
+const getData = require('./getData');
+
+
+//对应的测试或者开发环境
+const environment = 'optest04.krspace.cn';
+/**
+ * op登录接口
+ * @param loginValicode 验证码
+ * @param loginName 用户名称
+ * @param loginPwd 用户密码
+ */
+const loginurl = `http://${environment}/api/krspace-sso-web/sso/login/validateCodeLogin`
+/**
+ * 合同模板提交按钮
+ * @param name 模板名称
+ * @param formId 对应的表id
+ * @param content 合同模板的内容
+ * @param id 合同模板id
+ */
+const setTemplateUrl = `http://${environment}/api/krspace-erp-web/sys/print-template`
+/**
+ * 申请合同接口
+ * @param id 订单id
+ * @param languageType 语言类型
+ */
+const applyContractUrl = `http://${environment}/api/krspace-op-web/order-seat/contractApply`
+/**
+ * 下载合同接口
+ * @param requestId 合同id
+ * @param contractType 是否带章
+ */
+const downPdfUrl = `http://${environment}/api/krspace-erp-web/wf/station/contract/pdf/down`;
+
+
 let cookie = '';
-let paramsDetail = {
-  templateId: 26,
-  formId: 3,
-  orderId: 13100,
-  languageType: 'CHINESE',
-  requestId: 13106,
-  contractType: 'NOSEAL',
-  fileName:'member.html',
-  name:'十月入住新模板'
-}
-if (type == 'add') {
-  paramsDetail = {
-    templateId: 27,
-    formId: 3,
-    orderId: 19140,
-    languageType: 'CHINESE',
-    requestId: 13106,
-    contractType: 'NOSEAL',
-    fileName:'add.html',
-    name:'2018-10增租'
+let paramsDetail = getData();
+const htmlTemlateUrl = path.resolve(__dirname, '../../template/page/' + paramsDetail.fileName);
 
-  }
-}
-if(type=="renew"){
-  paramsDetail = {
-    templateId: 28,
-    formId: 3,
-    orderId: 19145,
-    languageType: 'CHINESE',
-    requestId: 13109,
-    contractType: 'NOSEAL',
-    fileName:'renew.html',
-    name:'2018-10续租'
-
-  }
-}
-if(type == 'modify'){
-  paramsDetail = {
-    templateId: 29,
-    formId: 3,
-    orderId: 19146,
-    languageType: 'CHINESE',
-    requestId: 13111,
-    contractType: 'NOSEAL',
-    fileName:'modify.html',
-    name:'2018-10换租'
-
-  }
-}
-console.log(paramsDetail,"ppp")
-const htmlTemlateUrl = path.resolve(__dirname, '../template/page/'+paramsDetail.fileName);
 axios.defaults.withCredentials = true
+//系统登录
 function login(loginValicode, loginName, loginPwd) {
   const loginaccess = querystring.stringify({ 'loginValicode': loginValicode, 'loginName': loginName, 'loginPwd': loginPwd })
   const options = {
-
     method: 'POST',
     headers: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
     data: loginaccess,
@@ -106,7 +91,6 @@ function setTemplate() {
     console.log("模板更新")
   })
 }
-// http://optest04.krspace.cn/api/krspace-op-web/order-seat/contractApply
 
 //申请合同
 function applyContract() {
