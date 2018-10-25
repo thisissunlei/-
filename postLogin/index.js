@@ -2,16 +2,66 @@ const axios = require('axios')
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
-const htmlTemlateUrl = path.resolve(__dirname, '../template/page/add.html');
+
 const loginurl = `http://optest04.krspace.cn/api/krspace-sso-web/sso/login/validateCodeLogin`
 const setTemplateUrl = `http://optest04.krspace.cn/api/krspace-erp-web/sys/print-template`
 const applyContractUrl = `http://optest04.krspace.cn/api/krspace-op-web/order-seat/contractApply`
 const downPdfUrl = `http://optest04.krspace.cn/api/krspace-erp-web/wf/station/contract/pdf/down`;
 const querystring = require('querystring');
+const type = process.env.NODE_ENV;
+// console.log(process.env.NODE_ENV, "ppppp")
 let cookie = '';
-// const generateData = require('./generate.tem.data');
-// import generateData from './generate.tem.data'
-// const jsonPath = ;
+let paramsDetail = {
+  templateId: 26,
+  formId: 3,
+  orderId: 13100,
+  languageType: 'CHINESE',
+  requestId: 13106,
+  contractType: 'NOSEAL',
+  fileName:'member.html',
+  name:'十月入住新模板'
+}
+if (type == 'add') {
+  paramsDetail = {
+    templateId: 27,
+    formId: 3,
+    orderId: 19140,
+    languageType: 'CHINESE',
+    requestId: 13106,
+    contractType: 'NOSEAL',
+    fileName:'add.html',
+    name:'2018-10增租'
+
+  }
+}
+if(type=="renew"){
+  paramsDetail = {
+    templateId: 28,
+    formId: 3,
+    orderId: 19145,
+    languageType: 'CHINESE',
+    requestId: 13109,
+    contractType: 'NOSEAL',
+    fileName:'renew.html',
+    name:'2018-10续租'
+
+  }
+}
+if(type == 'modify'){
+  paramsDetail = {
+    templateId: 29,
+    formId: 3,
+    orderId: 19146,
+    languageType: 'CHINESE',
+    requestId: 13111,
+    contractType: 'NOSEAL',
+    fileName:'modify.html',
+    name:'2018-10换租'
+
+  }
+}
+console.log(paramsDetail,"ppp")
+const htmlTemlateUrl = path.resolve(__dirname, '../template/page/'+paramsDetail.fileName);
 axios.defaults.withCredentials = true
 function login(loginValicode, loginName, loginPwd) {
   const loginaccess = querystring.stringify({ 'loginValicode': loginValicode, 'loginName': loginName, 'loginPwd': loginPwd })
@@ -23,8 +73,6 @@ function login(loginValicode, loginName, loginPwd) {
     url: loginurl,
   };
   axios(options).then(res => {
-
-    // writeFile(path.resolve(__dirname + '/data/data.json'), JSON.stringify(eval('(' + res + ')'), null, 2))
     cookie = res.headers['set-cookie'][0];
     setTemplate()
 
@@ -33,13 +81,11 @@ function login(loginValicode, loginName, loginPwd) {
 
 }
 
-
+//模板提交
 function setTemplate() {
-  console.log(htmlTemlateUrl, "pppp")
   let content = fs.readFileSync(htmlTemlateUrl, 'utf8')
-  // return ;
-  // console.log(content,"kkkkkk")
-  const projectIDstr = querystring.stringify({ name: '十月入住新模板', content: content, formId: 3, id: 26 })
+  let params = Object.assign({}, paramsDetail)
+  const projectIDstr = querystring.stringify({ name: params.name, content: content, formId: params.formId, id: params.templateId })
   const options = {
     method: 'POST',
     headers: {
@@ -61,9 +107,11 @@ function setTemplate() {
   })
 }
 // http://optest04.krspace.cn/api/krspace-op-web/order-seat/contractApply
+
 //申请合同
 function applyContract() {
-  const projectIDstr = querystring.stringify({ id: 19131, languageType: 'CHINESE' })
+  let params = Object.assign({}, paramsDetail)
+  const projectIDstr = querystring.stringify({ id: params.orderId, languageType: params.languageType })
   const options = {
     method: 'POST',
     headers: {
@@ -85,7 +133,8 @@ function applyContract() {
   })
 }
 function downPdf() {
-  const projectIDstr = querystring.stringify({ requestId: 13100, contractType: 'NOSEAL' })
+  let params = Object.assign({}, paramsDetail);
+  const projectIDstr = querystring.stringify({ requestId: params.requestId, contractType: params.contractType })
   const options = {
     method: 'POST',
     headers: {

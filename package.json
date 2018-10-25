@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "dev:member": "NODE_ENV=member node server.js",
+    "dev:add": "NODE_ENV=add node server.js",
+    "dev:renew": "NODE_ENV=renew node server.js",
+    "dev:modify": "NODE_ENV=modify node server.js",
     "build": "node build.js",
     "mini": "node mini.js",
     "convert": "node tool/converWordToHtml",

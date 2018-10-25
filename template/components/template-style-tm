@@ -223,7 +223,7 @@ body {
 
 .hander-detail div {
    display: inline-block;
-   /* font-size: 12px; */
+
    color: #333333;
    margin-top: 5px;
 }
@@ -280,7 +280,7 @@ body {
 }
 
 .all-end p {
-   font-size: 14px;
+   font-size: 12px;
    color: #333333;
 }
 
@@ -345,7 +345,7 @@ table.detail-table .detail-content-tr td:first-child{
    margin: 2px;
    font-size: 12px;
    color: #666666;
-   line-height: 22px;
+   line-height: 24px;
 }
 
 .hasUnderline {
