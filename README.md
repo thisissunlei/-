@@ -8,7 +8,7 @@
 
 **dist**
 
->最终生成的包含js的合同模板的存放地址
+>最终生成的包含 js 的合同模板的存放地址
 
 **docToHtml**
 
@@ -43,7 +43,7 @@ npm run dev:modify //开发换租模板
 (一下参数值为产考值)
 >本项目的需配置产生都在 server/config 定义
 
-**postLoginParam.js** 
+**postLoginParam** 
 >node 爬接口所用的参数配置
 
 ```
@@ -57,7 +57,7 @@ contractType: 'NOSEAL'            //是否带章
 fileName: 'member.html'           //模板文件的名称
 name: '十月入住新模板'              //模板名称
 ```
-**converWordToHtmlParam.js** 
+**converWordToHtmlParam** 
 >word 转换成 html 时的参数
 
 ```

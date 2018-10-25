@@ -11,8 +11,6 @@ const path = require('path');
 const querystring = require('querystring');
 const config = require('../config');
 
-const getData = require('./getData');
-
 
 //对应的测试或者开发环境
 const environment = config.environment;

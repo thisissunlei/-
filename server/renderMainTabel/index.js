@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const componentsPath = path.resolve(__dirname, '../client/template/components');
+const componentsPath = path.resolve(__dirname, '../../client/template/components');
 //会员详情
 const memberArr = [
   { label: '会员公司/贵方（法定登记的名称）', value: 'lessee_name' },

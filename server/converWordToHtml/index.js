@@ -5,9 +5,9 @@
  */
 const mammoth = require("mammoth");
 const fs = require('fs');
-const config = require('./config');
+const config = require('../config');
 const version = config.version;
-const files = fs.readdirSync('./docToHtml/doc/'+version);
+const files = fs.readdirSync('docToHtml/doc/'+version);
 function writeFileFun(i, result) {
   return new Promise((resolve, reject) => {
     fs.writeFile('docToHtml/convertTemplate/'+version+'/' + i + '.html', result.value, 'utf8', function (err) {
