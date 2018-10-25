@@ -1,0 +1,56 @@
+Arguments: 
+  /Users/mac/.nvm/versions/node/v8.9.0/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /Users/mac/.nvm/versions/node/v8.9.0/bin:~/.composer/vendor/bin:/usr/local/etc/nginx/sbin:~/.composer/vendor/bin:/usr/local/etc/nginx/sbin:/Users/mac/workspace/kr-dev:/Users/mac/workspace/kr-dev/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.6.0
+
+Node version: 
+  8.9.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.npmjs.org/axios: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:133819:19)
+      at ontimeout (timers.js:475:11)
+      at tryOnTimeout (timers.js:310:5)
+      at Timer.listOnTimeout (timers.js:270:5)
+
+npm manifest: 
+  {
+    "name": "contract-template",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js",
+      "build": "node build.js",
+      "mini": "node mini.js",
+      "convert": "node tool/converWordToHtml",
+      "login": "node postLogin"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git@gitlab.corp.krspace.cn:liuyihao/contract-template.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^0.18.0",
+      "chokidar": "^2.0.3",
+      "express": "^4.16.3",
+      "html-minifier": "^3.5.16",
+      "mammoth": "^1.4.6"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

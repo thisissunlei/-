@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+   ${main.css}
+</style>
+<body>
+<div id="print-box">
+
+</div>
+</body>
+<script type="text/javascript">
+
+    
+    ${jq.js}
+
+    (function () {
+
+        var utils = {
+            elemArr: [],
+            paperHeight: 1533,
+            template: ${template},
+            allData:${allData}
+        }
+
+        var printBox = document.getElementById("print-box");
+        utils.template = tagRender(utils.template, utils.allData);
+        utils.template = filterReplace(utils.template, utils.allData);
+
+        printBox.innerHTML = utils.template
+
+        detailReander("wf_station_contract_detail", utils.allData);
+        detailReander("wf_station_contract_period", utils.allData);
+        detailReander("wf_station_contract_finished", utils.allData);
+        rentDetailsRender(utils.allData);
+        
+
+
+        var qrCodeDoms = getNode(".qrCode");
+        for (var i = 0; i < qrCodeDoms.length; i++) {
+            qrCodeDoms[i].src = utils.allData.qrImgUrl;
+        }
+       
+        (function ($) {
+            $.fn.extend({
+                //表格合并单元格，colIdx要合并的列序号，从0开始
+                "rowspan": function (colIdx) {
+                    return this.each(function () {
+                        var that;
+                        $('tr', this).each(function (row) {
+                            $('td:eq(' + colIdx + ')', this).filter(':visible').each(function (col) {
+                                if (that != null && $(this).html() == $(that).html()) {
+                                    rowspan = $(that).attr("rowSpan");
+                                    if (rowspan == undefined) {
+                                        $(that).attr("rowSpan", 1);
+                                        rowspan = $(that).attr("rowSpan");
+                                    }
+                                    rowspan = Number(rowspan) + 1;
+                                    $(that).attr("rowSpan", rowspan);
+                                    $(this).hide();
+                                } else {
+                                    that = this;
+                                }
+                            });
+                        });
+                    });
+                }
+            });
+
+        })(jQuery);
+        //第一列合并
+        $(document).ready(function () {
+            $("#wf_station_contract_period").rowspan(0);
+        });
+        printBox.innerHTML = spliceKey(printBox.innerHTML, utils.allData);
+        // dateFormat();
+        
+        function dateFormat(){
+            var dateDom  = $(".date-format");
+            // console.log( dateDom);
+            for(var i=0; i<dateDom.length;i++){
+                // var chineseDom =  $(dateDom[i]).children('.chinese');
+                // for(var i=0;i<chineseDom.length;i++){
+                //     console.log( $(chineseDom[i]).html());
+                    
+                // }
+                var englishDom =  $(dateDom[i]).children('.english');
+                var chineseDom =  $(dateDom[i]).children('.chinese');
+                console.log(englishDom)
+                var eStr = ''; 
+                var cStr = ''
+                for(var j=0;j<englishDom.length;j++){
+                    console.log( $(englishDom[j]).html());
+                    if(j === 0){
+                       eStr +=  $(englishDom[j]).html() + "~" ;
+                       cStr += $(chineseDom[j]).html()+ "~";
+                    }else{
+                        eStr +=  $(englishDom[j]).html();
+                        cStr += $(chineseDom[j]).html();
+                    }
+                    // eStr += $(englishDom[j]).html();
+                    // cStr += $(chineseDom[j]).html();
+                }
+                console.log(eStr,"---",cStr)
+                // return $(".date-format").append = (englishDom[i].html())
+                dateDom[i].innerHTML = '<div>'+cStr+'</div><div>'+eStr+'</div>';
+            
+            }
+             
+           
+        };
+
+
+        function rentDetailsRender(allData) {
+            var rentDetailsDom = document.getElementById('wf_station_contract_station');
+
+            var rentDetailsData = allData.wf_station_contract_station;
+
+            if (!rentDetailsData) {
+                rentDetailsDom.innerHTML = '';
+                return;
+            }
+            var str = '';
+            for (var i = 0; i < rentDetailsData.length; i++) {
+                str += tableRnder(rentDetailsData[i].rentType, rentDetailsData[i])
+            }
+            rentDetailsDom.innerHTML = str;
+        }
+
+        function detailReander(tableName, allData) {
+            var feeDetailsContent = getNode('tr[data-content="' + tableName + '"]')[0]
+            if(!feeDetailsContent){
+                return
+            }
+            var dpriceDetailData = allData[tableName];
+            var contentHtml = feeDetailsContent.innerHTML;
+
+            feeDetailsContent.parentNode.removeChild(feeDetailsContent);
+            var detailName = getNode('table[data-name="' + tableName + '"]')[0];
+            if (!dpriceDetailData || !isUllObject(dpriceDetailData)) {
+                detailName.innerHTML = '';
+                return;
+            }
+            var tableHtml = detailName.innerHTML;
+          
+            for (var i = 0; i < dpriceDetailData.length; i++) {
+                var className = i==dpriceDetailData.length-1?'detail-content-tr': '';
+                var trHtml = spliceKey(contentHtml, dpriceDetailData[i]);
+                tableHtml += '<tr class="'+className+'">' + trHtml + '</tr>';
+            }
+            detailName.innerHTML = tableHtml;
+        }
+
+        function isUllObject(data) {
+            if (JSON.stringify(data) === '{}') {
+                return false // 如果为空,返回false
+            }
+            return true
+        }
+
+        function tableRnder(type,allData){
+            var data = allData.items;
+
+            var housHander = '${service-fee-th.html}';
+            var housContent = '${service-fee-td.html}';
+            var stationHander = '${service-fee-th.html}';
+            var stationContent = '${service-fee-td.html}';
+            var footer = '${service-fee-combined.html}';
+            var tableHtml = spliceKey(footer,allData)+' <table cellspacing="0" >'+housHander;
+            if(type == 'station'){
+                tableHtml=spliceKey(footer,allData)+ ' <table cellspacing="0" >' + stationHander;
+            }
+            for (var i = 0; i < data.length; i++) {
+                if(type=="hous"){
+                    tableHtml += spliceKey(housContent, data[i]);
+                }else{
+                    tableHtml += spliceKey(stationContent, data[i]);
+                }
+            }
+            tableHtml+='</table>';
+            return tableHtml;
+        }
+
+        //关键字提换
+        function spliceKey(template, data) {
+            for (key in data) {
+
+                var htmlReg = new RegExp('{{' + key + '}}', 'ig');
+                template = template.replace(htmlReg, data[key]);
+            }
+            return template;
+        }
+
+        ${jsCode}
+
+        //获取节点
+        function getNode(elem) {
+            return document.querySelectorAll(elem);
+        }
+
+        function filterReplace(str, data) {
+            var reg = /(\{#)((?!#\}).)+(#\})/g;
+            str = str.replace(reg, function (value) {
+                value = value.replace('{#', '').replace('#}', '');
+                var arr = value.split('||');
+                var thatValue = data[arr[0]];
+                var pouseArr=thatValue.split('、');
+                if(pouseArr.length>7){
+                    return arr[1]
+                }else{
+                    return '';
+                }
+                /*if (!thatValue) {
+                    return '';
+                }
+                var htmlReg = new RegExp('{{' + arr[0] + '}}', 'ig');
+                return arr[1].replace(htmlReg, thatValue)*/
+            });
+            return str;
+        }
+
+    })()
+
+</script>
+</html>
