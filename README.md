@@ -26,10 +26,12 @@
 ### 启动命令
 1. 将 word 文档转换成 html
 
+
 ```
 npm run docToHtml
 ```
 2. 项目开发
+
 ```
 npm run dev:member //开发会员合同(入住)模板
 npm run dev:add    //开发增租模板
@@ -43,6 +45,7 @@ npm run dev:modify //开发换租模板
 
 **postLoginParam.js** 
 >node 爬接口所用的参数配置
+
 ```
 environment:'optest04.krspace.cn' //所用环境域名
 templateId: 26                    //模板id
@@ -56,6 +59,7 @@ name: '十月入住新模板'              //模板名称
 ```
 **converWordToHtmlParam.js** 
 >word 转换成 html 时的参数
+
 ```
 version:'2018-10'   //本次改版的版本号
 ```
