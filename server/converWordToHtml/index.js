@@ -20,7 +20,7 @@ function writeFileFun(i, result) {
 const promiseList = files.map(i => new Promise((resolve, reject) => {
   return resolve(mammoth.convertToHtml({path: `docToHtml/doc/${version+'/'+i}`}));
 }).then(result => {
-  // console.log(result,"oooo")
+  
   result.value = getAgreement(result.value);
   return writeFileFun(i, result)
 }));
@@ -30,9 +30,9 @@ Promise.all(promiseList).then((result) => {
 }).catch((error) => {
   console.log('error: ' + error)
 })
+//将数据以 <p><strong>第二部分 条款和条件</strong></p> 为分界，进行分割
 
 function getAgreement(file){
-  
   if(file.indexOf('<p><strong>第二部分 条款和条件</strong></p>')!=-1){
     file = file.split('<p><strong>第二部分 条款和条件</strong></p>')[1]
   }
